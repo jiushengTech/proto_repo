@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+package api.detect;
+
+option go_package = "protoRepo/generate/detect;detect";
+option java_multiple_files = true;
+option java_package = "api.detect";
+
+service Detect {
+	rpc CreateDetect (CreateDetectRequest) returns (CreateDetectReply);
+	rpc UpdateDetect (UpdateDetectRequest) returns (UpdateDetectReply);
+	rpc DeleteDetect (DeleteDetectRequest) returns (DeleteDetectReply);
+	rpc GetDetect (GetDetectRequest) returns (GetDetectReply);
+	rpc ListDetect (ListDetectRequest) returns (ListDetectReply);
+	rpc AIDetection (DetectionRequest) returns (DetectionReply);
+}
+
+message CreateDetectRequest {}
+message CreateDetectReply {}
+
+message UpdateDetectRequest {}
+message UpdateDetectReply {}
+
+message DeleteDetectRequest {}
+message DeleteDetectReply {}
+
+message GetDetectRequest {}
+message GetDetectReply {}
+
+message ListDetectRequest {}
+message ListDetectReply {}
+
+message DetectionRequest {
+	string picPath = 1;
+}
+
+message DetectionReply {
+	string result = 1;  // result true 存在 false 不存在
+	string resPath = 2; // 检测结果的路径
+	string classId = 3;// 类型id
+	string className = 4;// 类型名称
+	string confidence = 5;// 置信度
+}

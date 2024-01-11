@@ -1,0 +1,53 @@
+syntax = "proto3";
+
+package api.device;
+
+option go_package = "protoRepo/generate/device;device";
+option java_multiple_files = true;
+option java_package = "api.device";
+
+service Radar {
+	rpc CreateRadar (CreateRadarRequest) returns (CreateRadarReply);
+	rpc UpdateRadar (UpdateRadarRequest) returns (UpdateRadarReply);
+	rpc DeleteRadar (DeleteRadarRequest) returns (DeleteRadarReply);
+	rpc ListRadar (ListRadarRequest) returns (ListRadarReply);
+	rpc GetRadarStatus (stream GetRadarStatusRequest) returns (stream GetRadarStatusReply);
+	rpc getRadarTrack (stream getRadarTrackRequest) returns (stream getRadarTrackReply);
+	rpc GetRadarPlot (stream GetRadarPlotRequest) returns (stream GetRadarPlotReply);
+}
+
+message GetRadarPlotRequest {}
+message GetRadarPlotReply {}
+
+message getRadarTrackRequest {}
+message getRadarTrackReply {}
+
+message CreateRadarRequest {}
+message CreateRadarReply {}
+
+message UpdateRadarRequest {}
+message UpdateRadarReply {}
+
+message DeleteRadarRequest {}
+message DeleteRadarReply {}
+
+message GetRadarStatusRequest {}
+message GetRadarStatusReply {}
+
+message ListRadarRequest {}
+message ListRadarReply {}
+
+message RadarPlot {
+	uint32 plot_number = 1;
+	float plot_azimuth = 2;
+	float plot_distance = 3;
+	float plot_altitude = 4;
+	float radial_velocity = 5;
+	float tangential_velocity = 6;
+	uint32 plot_mode = 7;
+	uint32 plot_type_supplement = 8;
+	uint32 plot_type = 9;
+	float plot_rcs = 10;
+	uint32 hover_status = 11;
+	uint32 plot_reserved = 12;
+}
