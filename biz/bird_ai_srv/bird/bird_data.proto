@@ -5,6 +5,7 @@ import "google/protobuf/empty.proto";
 import "google/api/annotations.proto";
 option go_package = "github.com/samsaralc/proto_repo/pb/bird_ai_srv/bird;bird";
 
+// 鸟的数据管理
 service BirdData {
   // 获取鸟类动态
   rpc ListBirdDynamic (google.protobuf.Empty) returns (ListBirdDynamicReply){
@@ -66,7 +67,7 @@ message GetBirdTrackReply{
 
 message ListBirdDynamicReply{
   message BirdDynamicList {
-    uint32 id =1;
+    uint32 id = 1;
     string latitude = 2;
     string longitude  = 3;
     uint32 birdId = 4;
@@ -93,5 +94,5 @@ message GetBirdEvolutionReply {
 }
 
 message GetBirdEvolutionRequest {
-  uint32 timeScope =1;
+  uint32 period =1;
 }

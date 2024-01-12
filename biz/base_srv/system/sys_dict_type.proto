@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package biz.base_srv.system;
 import "google/api/annotations.proto";
-import "common/page.proto";
+import "common/page/page.proto";
 option go_package = "github.com/samsaralc/proto_repo/pb/base_srv/system/;system";
 
 
@@ -73,14 +73,14 @@ message GetSysDictTypeReply {
 }
 
 message ListSysDictTypeRequest {
-	common.PageQuery pageQuery = 1;
+	page.PageQuery pageQuery = 1;
   int32 DictId = 2;
 	string DictName = 3;
 	string DictType = 4;
 	int32 Status = 5;
 }
 message ListSysDictTypeReply {
-	common.PageInfo pageInfo = 1;
+	page.PageInfo pageInfo = 1;
 	repeated GetSysDictTypeReply list = 2;
 }
 
