@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.3.0
 // - protoc             v4.25.1
-// source: bird_ai_bird/bird/bird_data.proto
+// source: bird_ai_srv/bird/bird_data.proto
 
 package bird
 
@@ -251,5 +251,5 @@ var BirdData_ServiceDesc = grpc.ServiceDesc{
 			ServerStreams: true,
 		},
 	},
-	Metadata: "bird_ai_bird/bird/bird_data.proto",
+	Metadata: "bird_ai_srv/bird/bird_data.proto",
 }

@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-http v2.7.2
 // - protoc             v4.25.1
-// source: bird_ai_bird/bird/bird_Info.proto
+// source: bird_ai_srv/bird/bird_Info.proto
 
 package bird
 
