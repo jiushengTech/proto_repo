@@ -8,7 +8,7 @@ package bird
 
 import (
 	context "context"
-	common "github.com/samsaralc/proto_repo/pb/common"
+	page "github.com/samsaralc/proto_repo/pb/common/page"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -32,7 +32,7 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type BirdTypeClient interface {
-	CreateBirdType(ctx context.Context, in *CreateBirdTypeRequest, opts ...grpc.CallOption) (*common.Response, error)
+	CreateBirdType(ctx context.Context, in *CreateBirdTypeRequest, opts ...grpc.CallOption) (*page.Response, error)
 	UpdateBirdType(ctx context.Context, in *UpdateBirdTypeRequest, opts ...grpc.CallOption) (*UpdateBirdTypeReply, error)
 	DeleteBirdType(ctx context.Context, in *DeleteBirdTypeRequest, opts ...grpc.CallOption) (*DeleteBirdTypeReply, error)
 	GetBirdType(ctx context.Context, in *GetBirdTypeRequest, opts ...grpc.CallOption) (*GetBirdTypeReply, error)
@@ -48,8 +48,8 @@ func NewBirdTypeClient(cc grpc.ClientConnInterface) BirdTypeClient {
 	return &birdTypeClient{cc}
 }
 
-func (c *birdTypeClient) CreateBirdType(ctx context.Context, in *CreateBirdTypeRequest, opts ...grpc.CallOption) (*common.Response, error) {
-	out := new(common.Response)
+func (c *birdTypeClient) CreateBirdType(ctx context.Context, in *CreateBirdTypeRequest, opts ...grpc.CallOption) (*page.Response, error) {
+	out := new(page.Response)
 	err := c.cc.Invoke(ctx, BirdType_CreateBirdType_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -106,7 +106,7 @@ func (c *birdTypeClient) GetBirdTypeTree(ctx context.Context, in *GetBirdTypeTre
 // All implementations must embed UnimplementedBirdTypeServer
 // for forward compatibility
 type BirdTypeServer interface {
-	CreateBirdType(context.Context, *CreateBirdTypeRequest) (*common.Response, error)
+	CreateBirdType(context.Context, *CreateBirdTypeRequest) (*page.Response, error)
 	UpdateBirdType(context.Context, *UpdateBirdTypeRequest) (*UpdateBirdTypeReply, error)
 	DeleteBirdType(context.Context, *DeleteBirdTypeRequest) (*DeleteBirdTypeReply, error)
 	GetBirdType(context.Context, *GetBirdTypeRequest) (*GetBirdTypeReply, error)
@@ -119,7 +119,7 @@ type BirdTypeServer interface {
 type UnimplementedBirdTypeServer struct {
 }
 
-func (UnimplementedBirdTypeServer) CreateBirdType(context.Context, *CreateBirdTypeRequest) (*common.Response, error) {
+func (UnimplementedBirdTypeServer) CreateBirdType(context.Context, *CreateBirdTypeRequest) (*page.Response, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateBirdType not implemented")
 }
 func (UnimplementedBirdTypeServer) UpdateBirdType(context.Context, *UpdateBirdTypeRequest) (*UpdateBirdTypeReply, error) {

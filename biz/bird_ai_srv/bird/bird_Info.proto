@@ -3,13 +3,14 @@ syntax = "proto3";
 package biz.bird_ai_srv.bird;
 import "google/api/annotations.proto";
 import "google/protobuf/empty.proto";
-import "common/page.proto";
+import "common/page/page.proto";
 import "google/protobuf/descriptor.proto";
 
 option go_package = "github.com/samsaralc/proto_repo/pb/bird_ai_srv/bird;bird";
 option java_multiple_files = true;
 option java_package = "api.bird";
 
+// 鸟的基础信息管理
 service BirdInfo {
 	rpc CreateBird (CreateBirdRequest) returns (CreateBirdReply);
 	rpc UpdateBird (UpdateBirdRequest) returns (UpdateBirdReply);
@@ -25,7 +26,7 @@ service BirdInfo {
 			get: "yw/bird/listBirdOrder"
 		};
 	};
-	rpc ListBirdBaseByOrder (ListBirdBaseByOrderRequest) returns (common.PageResult){
+	rpc ListBirdBaseByOrder (ListBirdBaseByOrderRequest) returns (ListBirdBaseByOrderReply){
 		option (google.api.http) = {
 			get: "yw/bird/listBaseByOrder"
 		};
@@ -40,21 +41,21 @@ message GetBirdDetailByIdRequest{
 }
 
 message GetBirdDetailByIdReply{
-		int32 id = 1;
-		string name = 2;
-		string blurb = 3;
-		string details = 4;
-		string habitat = 5;
-		string distribution = 6;
-		int32 order = 10;
-		int32 family = 11;
-		int32 genus = 12;
-		int32 species = 13;
-		int32 protectionGrade = 14;
-		int32 endangeredGrade = 15;
-		int32 resident = 16;
-		int32 volume = 17;
-		string titlePhoto = 18;
+	int32 id = 1;
+	string name = 2;
+	string blurb = 3;
+	string details = 4;
+	string habitat = 5;
+	string distribution = 6;
+	int32 order = 10;
+	int32 family = 11;
+	int32 genus = 12;
+	int32 species = 13;
+	int32 protectionGrade = 14;
+	int32 endangeredGrade = 15;
+	int32 resident = 16;
+	int32 volume = 17;
+	string titlePhoto = 18;
 }
 
 message CreateBirdRequest {
@@ -80,20 +81,18 @@ message ListBirdOrderReply {
 
 message ListBirdBaseByOrderRequest {
 	uint32 order =1;
-	common.PageQuery page = 2;
+	page.PageQuery page = 2;
+}
+
+message BirdBase {
+	int32 id = 1;
+	string name = 2;
+	string titlePhoto = 4;
 }
 
 message ListBirdBaseByOrderReply {
-	int64 Total = 1;
-	uint32 PageNum = 2;
-	uint32 PageSize = 3;
-	message BirdBaseList {
-		int32 id = 1;
-		string name = 2;
-		string details = 3;
-		string titlePhoto = 4;
-	}
-	repeated BirdBaseList list = 4;
+	page.PageInfo page_info = 1;
+	repeated BirdBase list = 2;
 }
 
 

@@ -10,7 +10,6 @@ import (
 	context "context"
 	http "github.com/go-kratos/kratos/v2/transport/http"
 	binding "github.com/go-kratos/kratos/v2/transport/http/binding"
-	common "github.com/samsaralc/proto_repo/pb/common"
 	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
@@ -27,7 +26,7 @@ const OperationBirdInfoListBirdOrder = "/biz.bird_ai_srv.bird.BirdInfo/ListBirdO
 
 type BirdInfoHTTPServer interface {
 	GetBirdDetailById(context.Context, *GetBirdDetailByIdRequest) (*GetBirdDetailByIdReply, error)
-	ListBirdBaseByOrder(context.Context, *ListBirdBaseByOrderRequest) (*common.PageResult, error)
+	ListBirdBaseByOrder(context.Context, *ListBirdBaseByOrderRequest) (*ListBirdBaseByOrderReply, error)
 	ListBirdOrder(context.Context, *emptypb.Empty) (*ListBirdOrderReply, error)
 }
 
@@ -90,14 +89,14 @@ func _BirdInfo_ListBirdBaseByOrder0_HTTP_Handler(srv BirdInfoHTTPServer) func(ct
 		if err != nil {
 			return err
 		}
-		reply := out.(*common.PageResult)
+		reply := out.(*ListBirdBaseByOrderReply)
 		return ctx.Result(200, reply)
 	}
 }
 
 type BirdInfoHTTPClient interface {
 	GetBirdDetailById(ctx context.Context, req *GetBirdDetailByIdRequest, opts ...http.CallOption) (rsp *GetBirdDetailByIdReply, err error)
-	ListBirdBaseByOrder(ctx context.Context, req *ListBirdBaseByOrderRequest, opts ...http.CallOption) (rsp *common.PageResult, err error)
+	ListBirdBaseByOrder(ctx context.Context, req *ListBirdBaseByOrderRequest, opts ...http.CallOption) (rsp *ListBirdBaseByOrderReply, err error)
 	ListBirdOrder(ctx context.Context, req *emptypb.Empty, opts ...http.CallOption) (rsp *ListBirdOrderReply, err error)
 }
 
@@ -122,8 +121,8 @@ func (c *BirdInfoHTTPClientImpl) GetBirdDetailById(ctx context.Context, in *GetB
 	return &out, err
 }
 
-func (c *BirdInfoHTTPClientImpl) ListBirdBaseByOrder(ctx context.Context, in *ListBirdBaseByOrderRequest, opts ...http.CallOption) (*common.PageResult, error) {
-	var out common.PageResult
+func (c *BirdInfoHTTPClientImpl) ListBirdBaseByOrder(ctx context.Context, in *ListBirdBaseByOrderRequest, opts ...http.CallOption) (*ListBirdBaseByOrderReply, error) {
+	var out ListBirdBaseByOrderReply
 	pattern := "yw/bird/listBaseByOrder"
 	path := binding.EncodeURL(pattern, in, true)
 	opts = append(opts, http.Operation(OperationBirdInfoListBirdBaseByOrder))

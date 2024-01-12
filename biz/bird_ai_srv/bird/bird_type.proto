@@ -1,20 +1,30 @@
 syntax = "proto3";
 
 package biz.bird_ai_srv.bird;
-import "common/page.proto";
+import "common/page/page.proto";
+import "google/api/annotations.proto";
 option go_package = "github.com/samsaralc/proto_repo/pb/bird_ai_srv/bird;bird";
 option java_multiple_files = true;
 
 option java_package = "api.bird";
 
+// 鸟的生物分类管理
 service BirdType {
-	rpc CreateBirdType (CreateBirdTypeRequest) returns (common.Response);
+	rpc CreateBirdType (CreateBirdTypeRequest) returns (page.Response){
+		option (google.api.http) = {
+			post: "/yw/bird/type/create"
+			body: "*"
+		};
+	};
 	rpc UpdateBirdType (UpdateBirdTypeRequest) returns (UpdateBirdTypeReply);
 	rpc DeleteBirdType (DeleteBirdTypeRequest) returns (DeleteBirdTypeReply);
 	rpc GetBirdType (GetBirdTypeRequest) returns (GetBirdTypeReply);
-	rpc ListBirdType (ListBirdTypeRequest) returns (ListBirdTypeReply);
+	rpc ListBirdType (ListBirdTypeRequest) returns (ListBirdTypeReply){
+		option (google.api.http) = {
+			get: "/yw/bird/type/list"
+		};
+	};
 	rpc GetBirdTypeTree (GetBirdTypeTreeRequest) returns (GetBirdTypeTreeReply);
-
 }
 
 message GetBirdTypeTreeRequest {
@@ -29,7 +39,7 @@ message GetBirdTypeTreeReply {
 		// 子节点，表示树的分支
 		repeated TreeNode children = 5;
 	}
-	 TreeNode tree = 1;
+	TreeNode tree = 1;
 }
 
 message CreateBirdTypeRequest {

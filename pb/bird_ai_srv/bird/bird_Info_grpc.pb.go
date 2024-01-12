@@ -8,7 +8,6 @@ package bird
 
 import (
 	context "context"
-	common "github.com/samsaralc/proto_repo/pb/common"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -40,7 +39,7 @@ type BirdInfoClient interface {
 	GetBird(ctx context.Context, in *GetBirdRequest, opts ...grpc.CallOption) (*GetBirdReply, error)
 	GetBirdDetailById(ctx context.Context, in *GetBirdDetailByIdRequest, opts ...grpc.CallOption) (*GetBirdDetailByIdReply, error)
 	ListBirdOrder(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ListBirdOrderReply, error)
-	ListBirdBaseByOrder(ctx context.Context, in *ListBirdBaseByOrderRequest, opts ...grpc.CallOption) (*common.PageResult, error)
+	ListBirdBaseByOrder(ctx context.Context, in *ListBirdBaseByOrderRequest, opts ...grpc.CallOption) (*ListBirdBaseByOrderReply, error)
 }
 
 type birdInfoClient struct {
@@ -105,8 +104,8 @@ func (c *birdInfoClient) ListBirdOrder(ctx context.Context, in *emptypb.Empty, o
 	return out, nil
 }
 
-func (c *birdInfoClient) ListBirdBaseByOrder(ctx context.Context, in *ListBirdBaseByOrderRequest, opts ...grpc.CallOption) (*common.PageResult, error) {
-	out := new(common.PageResult)
+func (c *birdInfoClient) ListBirdBaseByOrder(ctx context.Context, in *ListBirdBaseByOrderRequest, opts ...grpc.CallOption) (*ListBirdBaseByOrderReply, error) {
+	out := new(ListBirdBaseByOrderReply)
 	err := c.cc.Invoke(ctx, BirdInfo_ListBirdBaseByOrder_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -124,7 +123,7 @@ type BirdInfoServer interface {
 	GetBird(context.Context, *GetBirdRequest) (*GetBirdReply, error)
 	GetBirdDetailById(context.Context, *GetBirdDetailByIdRequest) (*GetBirdDetailByIdReply, error)
 	ListBirdOrder(context.Context, *emptypb.Empty) (*ListBirdOrderReply, error)
-	ListBirdBaseByOrder(context.Context, *ListBirdBaseByOrderRequest) (*common.PageResult, error)
+	ListBirdBaseByOrder(context.Context, *ListBirdBaseByOrderRequest) (*ListBirdBaseByOrderReply, error)
 	mustEmbedUnimplementedBirdInfoServer()
 }
 
@@ -150,7 +149,7 @@ func (UnimplementedBirdInfoServer) GetBirdDetailById(context.Context, *GetBirdDe
 func (UnimplementedBirdInfoServer) ListBirdOrder(context.Context, *emptypb.Empty) (*ListBirdOrderReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListBirdOrder not implemented")
 }
-func (UnimplementedBirdInfoServer) ListBirdBaseByOrder(context.Context, *ListBirdBaseByOrderRequest) (*common.PageResult, error) {
+func (UnimplementedBirdInfoServer) ListBirdBaseByOrder(context.Context, *ListBirdBaseByOrderRequest) (*ListBirdBaseByOrderReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListBirdBaseByOrder not implemented")
 }
 func (UnimplementedBirdInfoServer) mustEmbedUnimplementedBirdInfoServer() {}
