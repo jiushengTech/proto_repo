@@ -1,4 +1,4 @@
-module protoRepo
+module proto_repo
 
 go 1.20
 
