@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package api.common;
+package common;
 import "google/protobuf/any.proto";
-option go_package = "protoRepo/generate/common;common";
+option go_package = "github.com/samsaralc/proto_repo/pb/common;common";
 
 message PageQuery {
     int64 pageNum = 1;

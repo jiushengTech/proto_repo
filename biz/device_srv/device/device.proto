@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+package biz.device_srv.device;
+import "google/api/annotations.proto";
+
+option go_package = "github.com/samsaralc/proto_repo/pb/device_srv/device;bird";
+option java_multiple_files = true;
+option java_package = "api.device";
+
+service Device {
+	rpc CreateDevice (CreateDeviceRequest) returns (CreateDeviceReply);
+	rpc UpdateDevice (UpdateDeviceRequest) returns (UpdateDeviceReply);
+	rpc DeleteDevice (DeleteDeviceRequest) returns (DeleteDeviceReply);
+	rpc GetDevice (GetDeviceRequest) returns (GetDeviceReply){
+		option (google.api.http) = {
+			get: "/device_srv/{id}"
+		};
+	};
+	rpc ListDevice (ListDeviceRequest) returns (ListDeviceReply);
+}
+
+message CreateDeviceRequest {}
+message CreateDeviceReply {}
+
+message UpdateDeviceRequest {}
+message UpdateDeviceReply {}
+
+message DeleteDeviceRequest {}
+message DeleteDeviceReply {}
+
+message GetDeviceRequest {
+	string id = 1;
+}
+message GetDeviceReply {
+	string deviceId = 1;
+	string deviceName = 2;
+	string deviceStatus = 3;
+}
+
+message ListDeviceRequest {}
+message ListDeviceReply {}

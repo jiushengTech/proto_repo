@@ -1,4 +1,4 @@
-module protoRepo
+module github.com/samsaralc/proto_repo
 
 go 1.20
 
