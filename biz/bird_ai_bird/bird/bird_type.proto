@@ -1,0 +1,75 @@
+syntax = "proto3";
+
+package biz.bird_ai_srv.bird;
+import "common/page/page.proto";
+import "google/api/annotations.proto";
+option go_package = "protoRepo/pb/bird;bird";
+option java_multiple_files = true;
+
+option java_package = "api.bird";
+
+// 鸟的生物分类管理
+service BirdType {
+	rpc CreateBirdType (CreateBirdTypeRequest) returns (page.Response){
+		option (google.api.http) = {
+			post: "/yw/bird/type/create"
+			body: "*"
+		};
+	};
+	rpc UpdateBirdType (UpdateBirdTypeRequest) returns (UpdateBirdTypeReply);
+	rpc DeleteBirdType (DeleteBirdTypeRequest) returns (DeleteBirdTypeReply);
+	rpc GetBirdType (GetBirdTypeRequest) returns (GetBirdTypeReply);
+	rpc ListBirdType (ListBirdTypeRequest) returns (ListBirdTypeReply){
+		option (google.api.http) = {
+			get: "/yw/bird/type/list"
+		};
+	};
+	rpc GetBirdTypeTree (GetBirdTypeTreeRequest) returns (GetBirdTypeTreeReply);
+}
+
+message GetBirdTypeTreeRequest {
+	uint32 id = 1;
+}
+message GetBirdTypeTreeReply {
+	message TreeNode {
+		uint32 id = 1;
+		string name = 2;
+		uint32 pid = 3;
+		uint32 classification = 4;
+		// 子节点，表示树的分支
+		repeated TreeNode children = 5;
+	}
+	TreeNode tree = 1;
+}
+
+message CreateBirdTypeRequest {
+	string name = 1;
+	uint32 pid = 2;
+	uint32 classification = 3;
+}
+message CreateBirdTypeReply {}
+
+message UpdateBirdTypeRequest {}
+message UpdateBirdTypeReply {}
+
+message DeleteBirdTypeRequest {}
+message DeleteBirdTypeReply {}
+
+message GetBirdTypeRequest {}
+message GetBirdTypeReply {}
+
+message ListBirdTypeRequest {
+	uint32 id = 1;
+	string name = 2;
+	uint32 pid = 3;
+	uint32 classification = 4;
+}
+message ListBirdTypeReply {
+	message BirdType {
+		uint32 id = 1;
+		string name = 2;
+		uint32 pid = 3;
+		uint32 classification = 4;
+	}
+	repeated BirdType list = 1;
+}

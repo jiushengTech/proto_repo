@@ -1,0 +1,64 @@
+syntax = "proto3";
+
+package biz.bird_ai_srv.bird;
+import "common/page/page.proto";
+import "google/api/annotations.proto";
+option go_package = "protoRepo/pb/bird;bird";
+option java_multiple_files = true;
+option java_package = "bird-ai-service.api.bird";
+
+// 鸟的统计信息
+service BirdStat {
+	rpc DeleteBirdStat (DeleteBirdStatRequest) returns (DeleteBirdStatReply);
+	rpc ListBirdStatFromCamera (ListBirdStatFromCameraRequest) returns (ListBirdStatFromCameraReply){
+		option (google.api.http) = {
+			get: "/yw/bird/stat/camera"
+		};
+	};
+	rpc ListBirdStatFromVoicePrint (ListBirdStatFromVoicePrintRequest) returns (ListBirdStatFromVoicePrintReply){
+		option (google.api.http) = {
+			get: "/yw/bird/stat/voiceprint"
+		};
+	};
+}
+
+
+message ListBirdStatFromVoicePrintRequest {
+	page.PageQuery page = 1;
+	uint32 bird_id = 2;
+}
+message ListBirdStatFromVoicePrintReply {
+	message BirdStat{
+		string id = 1;
+		string device_id = 7;
+		int32 bird_id = 8;
+		int32 bird_similarity = 9;
+		string source = 11;
+	}
+	page.PageInfo page_info =1;
+	repeated BirdStat list = 2;
+}
+
+message ListBirdStatFromCameraRequest {
+	page.PageQuery page = 1;
+	uint32 bird_id = 2;
+}
+
+message ListBirdStatFromCameraReply {
+	message BirdStat{
+		string id = 1;
+		string camera_id = 7;
+		int32 bird_id = 8;
+		int32 bird_similarity = 9;
+		string result = 11;
+	}
+	page.PageInfo page_info =1;
+	repeated BirdStat list = 2;
+}
+
+message DeleteBirdStatRequest {}
+message DeleteBirdStatReply {}
+
+message ListBirdStatRequest {}
+message ListBirdStatReply {}
+
