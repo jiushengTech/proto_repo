@@ -1,0 +1,99 @@
+syntax = "proto3";
+
+package biz.bird_ai_srv.bird;
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+import "common/page.proto";
+import "google/protobuf/descriptor.proto";
+
+option go_package = "github.com/samsaralc/proto_repo/pb/bird_ai_srv/bird;bird";
+option java_multiple_files = true;
+option java_package = "api.bird";
+
+service BirdInfo {
+	rpc CreateBird (CreateBirdRequest) returns (CreateBirdReply);
+	rpc UpdateBird (UpdateBirdRequest) returns (UpdateBirdReply);
+	rpc DeleteBird (DeleteBirdRequest) returns (DeleteBirdReply);
+	rpc GetBird (GetBirdRequest) returns (GetBirdReply);
+	rpc GetBirdDetailById (GetBirdDetailByIdRequest) returns (GetBirdDetailByIdReply){
+		option (google.api.http) = {
+			get: "yw/bird/getBirdDetail"
+		};
+	};
+	rpc ListBirdOrder (google.protobuf.Empty) returns (ListBirdOrderReply){
+		option (google.api.http) = {
+			get: "yw/bird/listBirdOrder"
+		};
+	};
+	rpc ListBirdBaseByOrder (ListBirdBaseByOrderRequest) returns (common.PageResult){
+		option (google.api.http) = {
+			get: "yw/bird/listBaseByOrder"
+		};
+	};
+
+}
+
+
+
+message GetBirdDetailByIdRequest{
+	int32 id = 1;
+}
+
+message GetBirdDetailByIdReply{
+		int32 id = 1;
+		string name = 2;
+		string blurb = 3;
+		string details = 4;
+		string habitat = 5;
+		string distribution = 6;
+		int32 order = 10;
+		int32 family = 11;
+		int32 genus = 12;
+		int32 species = 13;
+		int32 protectionGrade = 14;
+		int32 endangeredGrade = 15;
+		int32 resident = 16;
+		int32 volume = 17;
+		string titlePhoto = 18;
+}
+
+message CreateBirdRequest {
+}
+message CreateBirdReply {}
+
+message UpdateBirdRequest {}
+message UpdateBirdReply {}
+
+message DeleteBirdRequest {}
+message DeleteBirdReply {}
+
+message GetBirdRequest {}
+message GetBirdReply {}
+
+message ListBirdOrderReply {
+	message BirdOrderList {
+		int32 id = 1;
+		string name = 2;
+	}
+	repeated BirdOrderList birdOrderList = 1;
+}
+
+message ListBirdBaseByOrderRequest {
+	uint32 order =1;
+	common.PageQuery page = 2;
+}
+
+message ListBirdBaseByOrderReply {
+	int64 Total = 1;
+	uint32 PageNum = 2;
+	uint32 PageSize = 3;
+	message BirdBaseList {
+		int32 id = 1;
+		string name = 2;
+		string details = 3;
+		string titlePhoto = 4;
+	}
+	repeated BirdBaseList list = 4;
+}
+
+

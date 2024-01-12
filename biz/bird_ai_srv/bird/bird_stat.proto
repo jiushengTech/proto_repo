@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package biz.bird_ai_srv.bird;
+import "common/page.proto";
+option go_package = "github.com/samsaralc/proto_repo/pb/bird_ai_srv/bird;bird";
+option java_multiple_files = true;
+option java_package = "api.bird";
+
+// 业务领域：鸟类的统计信息
+service BirdStat {
+	rpc DeleteBirdStat (DeleteBirdStatRequest) returns (DeleteBirdStatReply);
+	rpc ListBirdStatFromCamera (ListBirdStatFromCameraRequest) returns (ListBirdStatFromCameraReply);
+	rpc ListBirdStatFromVoicePrint (ListBirdStatFromVoicePrintRequest) returns (ListBirdStatFromVoicePrintReply);
+}
+
+
+message ListBirdStatFromVoicePrintRequest {
+	common.PageQuery page = 1;
+}
+message ListBirdStatFromVoicePrintReply {}
+
+message ListBirdStatFromCameraRequest {
+	common.PageQuery page = 1;
+}
+
+
+message ListBirdStatFromCameraReply {
+	message BirdStat{
+		string id = 1;
+		string camera_id = 7;
+		int32 bird_id = 8;
+		int32 bird_similarity = 9;
+		string result_photo_url = 11;
+	}
+	common.PageInfo page_info =1;
+	repeated BirdStat list = 2;
+}
+
+message DeleteBirdStatRequest {}
+message DeleteBirdStatReply {}
+
+message ListBirdStatRequest {}
+message ListBirdStatReply {}
+

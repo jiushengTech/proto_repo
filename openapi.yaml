@@ -1,0 +1,707 @@
+# Generated with protoc-gen-openapi
+# https://github.com/google/gnostic/tree/master/cmd/protoc-gen-openapi
+
+openapi: 3.0.3
+info:
+    title: ""
+    version: 0.0.1
+paths:
+    /device_srv/{id}:
+        get:
+            tags:
+                - Device
+            operationId: Device_GetDevice
+            parameters:
+                - name: id
+                  in: path
+                  required: true
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/biz.device_srv.device.GetDeviceReply'
+    yw/bird/getBirdDetail:
+        get:
+            tags:
+                - BirdInfo
+            operationId: BirdInfo_GetBirdDetailById
+            parameters:
+                - name: id
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/biz.bird_ai_srv.bird.GetBirdDetailByIdReply'
+    yw/bird/getBirdDistribution:
+        get:
+            tags:
+                - BirdData
+            description: 获取鸟类分布
+            operationId: BirdData_GetBirdDistribution
+            parameters:
+                - name: period
+                  in: query
+                  description: '1: 周  2: 月 3: 年'
+                  schema:
+                    type: integer
+                    format: uint32
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/biz.bird_ai_srv.bird.GetBirdDistributionReply'
+    yw/bird/getBirdEvolution:
+        get:
+            tags:
+                - BirdData
+            operationId: BirdData_GetBirdEvolution
+            parameters:
+                - name: timeScope
+                  in: query
+                  schema:
+                    type: integer
+                    format: uint32
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/biz.bird_ai_srv.bird.GetBirdEvolutionReply'
+    yw/bird/listBaseByOrder:
+        get:
+            tags:
+                - BirdInfo
+            operationId: BirdInfo_ListBirdBaseByOrder
+            parameters:
+                - name: order
+                  in: query
+                  schema:
+                    type: integer
+                    format: uint32
+                - name: page.pageNum
+                  in: query
+                  schema:
+                    type: string
+                - name: page.pageSize
+                  in: query
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/common.PageResult'
+    yw/bird/listBirdDynamic:
+        get:
+            tags:
+                - BirdData
+            description: 获取鸟类动态
+            operationId: BirdData_ListBirdDynamic
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/biz.bird_ai_srv.bird.ListBirdDynamicReply'
+    yw/bird/listBirdOrder:
+        get:
+            tags:
+                - BirdInfo
+            operationId: BirdInfo_ListBirdOrder
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/biz.bird_ai_srv.bird.ListBirdOrderReply'
+    yw/system/sys_dict_data:
+        get:
+            tags:
+                - SysDictData
+            operationId: SysDictData_ListSysDictData
+            parameters:
+                - name: dictCode
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+                - name: dictLabel
+                  in: query
+                  schema:
+                    type: string
+                - name: dictValue
+                  in: query
+                  schema:
+                    type: string
+                - name: dictType
+                  in: query
+                  schema:
+                    type: string
+                - name: status
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+                - name: pageQuery.pageNum
+                  in: query
+                  schema:
+                    type: string
+                - name: pageQuery.pageSize
+                  in: query
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/biz.base_srv.system.ListSysDictDataReply'
+        put:
+            tags:
+                - SysDictData
+            operationId: SysDictData_UpdateSysDictData
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/biz.base_srv.system.UpdateSysDictDataRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/biz.base_srv.system.UpdateSysDictDataReply'
+        post:
+            tags:
+                - SysDictData
+            operationId: SysDictData_CreateSysDictData
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/biz.base_srv.system.CreateSysDictDataRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/biz.base_srv.system.CreateSysDictDataReply'
+    yw/system/sys_dict_data/{dictCode}:
+        get:
+            tags:
+                - SysDictData
+            operationId: SysDictData_GetSysDictData
+            parameters:
+                - name: dictCode
+                  in: path
+                  required: true
+                  schema:
+                    type: integer
+                    format: uint32
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/biz.base_srv.system.GetSysDictDataReply'
+        delete:
+            tags:
+                - SysDictData
+            operationId: SysDictData_DeleteSysDictData
+            parameters:
+                - name: dictCode
+                  in: path
+                  required: true
+                  schema:
+                    type: integer
+                    format: uint32
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/biz.base_srv.system.DeleteSysDictDataReply'
+    yw/system/sys_dict_type:
+        get:
+            tags:
+                - SysDictType
+            operationId: SysDictType_ListSysDictType
+            parameters:
+                - name: pageQuery.pageNum
+                  in: query
+                  schema:
+                    type: string
+                - name: pageQuery.pageSize
+                  in: query
+                  schema:
+                    type: string
+                - name: DictId
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+                - name: DictName
+                  in: query
+                  schema:
+                    type: string
+                - name: DictType
+                  in: query
+                  schema:
+                    type: string
+                - name: Status
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/biz.base_srv.system.ListSysDictTypeReply'
+        put:
+            tags:
+                - SysDictType
+            operationId: SysDictType_UpdateSysDictType
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/biz.base_srv.system.UpdateSysDictTypeRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/biz.base_srv.system.UpdateSysDictTypeReply'
+        post:
+            tags:
+                - SysDictType
+            operationId: SysDictType_CreateSysDictType
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/biz.base_srv.system.CreateSysDictTypeRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/biz.base_srv.system.CreateSysDictTypeReply'
+    yw/system/sys_dict_type/{dictId}:
+        get:
+            tags:
+                - SysDictType
+            operationId: SysDictType_GetSysDictType
+            parameters:
+                - name: dictId
+                  in: path
+                  required: true
+                  schema:
+                    type: integer
+                    format: int32
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/biz.base_srv.system.GetSysDictTypeReply'
+        delete:
+            tags:
+                - SysDictType
+            operationId: SysDictType_DeleteSysDictType
+            parameters:
+                - name: dictId
+                  in: path
+                  required: true
+                  schema:
+                    type: integer
+                    format: uint32
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/biz.base_srv.system.DeleteSysDictTypeReply'
+components:
+    schemas:
+        biz.base_srv.system.CreateSysDictDataReply:
+            type: object
+            properties: {}
+        biz.base_srv.system.CreateSysDictDataRequest:
+            type: object
+            properties:
+                dictSort:
+                    type: integer
+                    format: int32
+                dictLabel:
+                    type: string
+                dictValue:
+                    type: string
+                dictType:
+                    type: string
+                cssClass:
+                    type: string
+                listClass:
+                    type: string
+                isDefault:
+                    type: string
+                status:
+                    type: integer
+                    format: int32
+                default:
+                    type: string
+                remark:
+                    type: string
+        biz.base_srv.system.CreateSysDictTypeReply:
+            type: object
+            properties: {}
+        biz.base_srv.system.CreateSysDictTypeRequest:
+            type: object
+            properties:
+                dictName:
+                    type: string
+                dictType:
+                    type: string
+                status:
+                    type: integer
+                    format: int32
+                remark:
+                    type: string
+        biz.base_srv.system.DeleteSysDictDataReply:
+            type: object
+            properties: {}
+        biz.base_srv.system.DeleteSysDictTypeReply:
+            type: object
+            properties: {}
+        biz.base_srv.system.GetSysDictDataReply:
+            type: object
+            properties:
+                dictCode:
+                    type: integer
+                    format: int32
+                dictSort:
+                    type: integer
+                    format: int32
+                dictLabel:
+                    type: string
+                dictValue:
+                    type: string
+                dictType:
+                    type: string
+                cssClass:
+                    type: string
+                listClass:
+                    type: string
+                isDefault:
+                    type: string
+                status:
+                    type: integer
+                    format: int32
+                default:
+                    type: string
+                remark:
+                    type: string
+        biz.base_srv.system.GetSysDictTypeReply:
+            type: object
+            properties:
+                dictId:
+                    type: integer
+                    format: int32
+                dictName:
+                    type: string
+                dictType:
+                    type: string
+                status:
+                    type: integer
+                    format: int32
+                remark:
+                    type: string
+        biz.base_srv.system.ListSysDictDataReply:
+            type: object
+            properties:
+                pageInfo:
+                    $ref: '#/components/schemas/common.PageInfo'
+                list:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/biz.base_srv.system.GetSysDictDataReply'
+        biz.base_srv.system.ListSysDictTypeReply:
+            type: object
+            properties:
+                pageInfo:
+                    $ref: '#/components/schemas/common.PageInfo'
+                list:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/biz.base_srv.system.GetSysDictTypeReply'
+        biz.base_srv.system.UpdateSysDictDataReply:
+            type: object
+            properties: {}
+        biz.base_srv.system.UpdateSysDictDataRequest:
+            type: object
+            properties:
+                dictSort:
+                    type: integer
+                    format: int32
+                dictLabel:
+                    type: string
+                dictValue:
+                    type: string
+                dictType:
+                    type: string
+                cssClass:
+                    type: string
+                listClass:
+                    type: string
+                isDefault:
+                    type: string
+                status:
+                    type: integer
+                    format: int32
+                default:
+                    type: string
+                remark:
+                    type: string
+        biz.base_srv.system.UpdateSysDictTypeReply:
+            type: object
+            properties: {}
+        biz.base_srv.system.UpdateSysDictTypeRequest:
+            type: object
+            properties:
+                dictId:
+                    type: integer
+                    format: int32
+                dictName:
+                    type: string
+                dictType:
+                    type: string
+                status:
+                    type: integer
+                    format: int32
+                remark:
+                    type: string
+        biz.bird_ai_srv.bird.BirdEvolutionSets_BirdEvolution:
+            type: object
+            properties:
+                id:
+                    type: integer
+                    format: uint32
+                latitude:
+                    type: string
+                longitude:
+                    type: string
+                birdCount:
+                    type: integer
+                    format: uint32
+        biz.bird_ai_srv.bird.DeviceCoordinate_BirdInfo:
+            type: object
+            properties:
+                birdId:
+                    type: integer
+                    format: uint32
+                birdName:
+                    type: string
+                birdTitlePhoto:
+                    type: string
+        biz.bird_ai_srv.bird.GetBirdDetailByIdReply:
+            type: object
+            properties:
+                id:
+                    type: integer
+                    format: int32
+                name:
+                    type: string
+                blurb:
+                    type: string
+                details:
+                    type: string
+                habitat:
+                    type: string
+                distribution:
+                    type: string
+                order:
+                    type: integer
+                    format: int32
+                family:
+                    type: integer
+                    format: int32
+                genus:
+                    type: integer
+                    format: int32
+                species:
+                    type: integer
+                    format: int32
+                protectionGrade:
+                    type: integer
+                    format: int32
+                endangeredGrade:
+                    type: integer
+                    format: int32
+                resident:
+                    type: integer
+                    format: int32
+                volume:
+                    type: integer
+                    format: int32
+                titlePhoto:
+                    type: string
+        biz.bird_ai_srv.bird.GetBirdDistributionReply:
+            type: object
+            properties:
+                DeviceCoordinateList:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/biz.bird_ai_srv.bird.GetBirdDistributionReply_DeviceCoordinate'
+        biz.bird_ai_srv.bird.GetBirdDistributionReply_DeviceCoordinate:
+            type: object
+            properties:
+                deviceLatitude:
+                    type: string
+                deviceLongitude:
+                    type: string
+                deviceId:
+                    type: integer
+                    format: uint32
+                birdInfoList:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/biz.bird_ai_srv.bird.DeviceCoordinate_BirdInfo'
+        biz.bird_ai_srv.bird.GetBirdEvolutionReply:
+            type: object
+            properties:
+                birdEvolutionSets:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/biz.bird_ai_srv.bird.GetBirdEvolutionReply_BirdEvolutionSets'
+        biz.bird_ai_srv.bird.GetBirdEvolutionReply_BirdEvolutionSets:
+            type: object
+            properties:
+                birdEvolutionList:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/biz.bird_ai_srv.bird.BirdEvolutionSets_BirdEvolution'
+                timestamp:
+                    type: string
+        biz.bird_ai_srv.bird.ListBirdDynamicReply:
+            type: object
+            properties:
+                birdDynamicList:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/biz.bird_ai_srv.bird.ListBirdDynamicReply_BirdDynamicList'
+        biz.bird_ai_srv.bird.ListBirdDynamicReply_BirdDynamicList:
+            type: object
+            properties:
+                id:
+                    type: integer
+                    format: uint32
+                latitude:
+                    type: string
+                longitude:
+                    type: string
+                birdId:
+                    type: integer
+                    format: uint32
+                name:
+                    type: string
+                photoPath:
+                    type: string
+                blurb:
+                    type: string
+                details:
+                    type: string
+        biz.bird_ai_srv.bird.ListBirdOrderReply:
+            type: object
+            properties:
+                birdOrderList:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/biz.bird_ai_srv.bird.ListBirdOrderReply_BirdOrderList'
+        biz.bird_ai_srv.bird.ListBirdOrderReply_BirdOrderList:
+            type: object
+            properties:
+                id:
+                    type: integer
+                    format: int32
+                name:
+                    type: string
+        biz.device_srv.device.GetDeviceReply:
+            type: object
+            properties:
+                deviceId:
+                    type: string
+                deviceName:
+                    type: string
+                deviceStatus:
+                    type: string
+        common.PageInfo:
+            type: object
+            properties:
+                total:
+                    type: string
+                pageNum:
+                    type: string
+                pageSize:
+                    type: string
+                pages:
+                    type: string
+        common.PageResult:
+            type: object
+            properties:
+                total:
+                    type: string
+                pageNum:
+                    type: string
+                pageSize:
+                    type: string
+                list:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/google.protobuf.Any'
+        google.protobuf.Any:
+            type: object
+            properties:
+                '@type':
+                    type: string
+                    description: The type of the serialized message.
+            additionalProperties: true
+            description: Contains an arbitrary serialized message along with a @type that describes the type of the serialized message.
+tags:
+    - name: BirdData
+    - name: BirdInfo
+    - name: Device
+    - name: SysDictData
+    - name: SysDictType
