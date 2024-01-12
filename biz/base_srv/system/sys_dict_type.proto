@@ -3,7 +3,7 @@ syntax = "proto3";
 package biz.base_srv.system;
 import "google/api/annotations.proto";
 import "common/page/page.proto";
-option go_package = "protoRepo/pb/system;system";
+option go_package = "protoRepo/pb/base_srv/system;system";
 
 
 service SysDictType {

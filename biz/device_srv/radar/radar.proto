@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package biz.device_srv.radar;
 
-option go_package = "protoRepo/pb/device;device";
+option go_package = "protoRepo/pb/device_srv/device;device";
 option java_multiple_files = true;
 option java_package = "api.device";
 
