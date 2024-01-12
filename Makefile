@@ -12,7 +12,7 @@ ifeq ($(GOHOSTOS), windows)
 	API_PROTO_FILES=$(shell $(Git_Bash) -c "find ./ -name *.proto")
 else
 	INTERNAL_PROTO_FILES=$(shell find internal -name *.proto)
-	API_PROTO_FILES=$(shell find api -name *.proto)
+	API_PROTO_FILES=$(shell find ./ -name *.proto)
 endif
 
 # make wire
@@ -40,13 +40,13 @@ config:
 .PHONY: api
 # generate api proto
 api:
-		protoc --proto_path=./biz \
-			   --proto_path=./third_party \
-         	   --go_out=paths=source_relative:./pb \
-         	   --go-http_out=paths=source_relative:./pb \
-         	   --go-grpc_out=paths=source_relative:./pb \
-        	   --openapi_out=fq_schema_naming=true,default_response=false:. \
-        	   $(API_PROTO_FILES)
+	protoc --proto_path=./biz \
+	  	   --proto_path=./third_party \
+       	   --go_out=paths=source_relative:./pb \
+       	   --go-http_out=paths=source_relative:./pb \
+       	   --go-grpc_out=paths=source_relative:./pb \
+      	   --openapi_out=fq_schema_naming=true,default_response=false:. \
+      	     $(filter-out ./third_party/%, $(API_PROTO_FILES))
 
 
 .PHONY: build
