@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package page;
 import "google/protobuf/any.proto";
-option go_package = "protoRepo/pb/common/page;page";
+option go_package = "proto_repo/pb/common/page;page";
 
 message PageQuery {
     int64 pageNum = 1;

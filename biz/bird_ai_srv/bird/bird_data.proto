@@ -3,7 +3,7 @@ syntax = "proto3";
 package biz.bird_ai_srv.bird;
 import "google/protobuf/empty.proto";
 import "google/api/annotations.proto";
-option go_package = "protoRepo/pb/bird_ai_srv/bird;bird";
+option go_package = "proto_repo/pb/bird_ai_srv/bird;bird";
 
 // 鸟的数据管理
 service BirdData {

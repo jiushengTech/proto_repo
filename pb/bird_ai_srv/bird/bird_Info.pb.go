@@ -12,7 +12,7 @@ import (
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	_ "google.golang.org/protobuf/types/descriptorpb"
 	emptypb "google.golang.org/protobuf/types/known/emptypb"
-	page "protoRepo/pb/common/page"
+	page "proto_repo/pb/common/page"
 	reflect "reflect"
 	sync "sync"
 )
