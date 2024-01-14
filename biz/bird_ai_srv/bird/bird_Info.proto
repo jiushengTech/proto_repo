@@ -37,7 +37,7 @@ service BirdInfo {
 
 
 message GetBirdDetailByIdRequest{
-	int32 id = 1;
+	uint32 id = 1;
 }
 
 message GetBirdDetailByIdReply{
