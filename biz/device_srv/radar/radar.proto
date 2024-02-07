@@ -1,0 +1,76 @@
+syntax = "proto3";
+
+package biz.device_srv.device;
+import "google/api/annotations.proto";
+option go_package = "github.com/samsaralc/proto_repo/pb/device_srv/radar;bird";
+option java_multiple_files = true;
+option java_package = "api.radar";
+
+// 仅限21所雷达
+service Radar {
+  rpc CreateRadar (CreateRadarRequest) returns (CreateRadarReply);
+  rpc UpdateRadar (UpdateRadarRequest) returns (UpdateRadarReply);
+  rpc DeleteRadar (DeleteRadarRequest) returns (DeleteRadarReply);
+  rpc ListRadar (ListRadarRequest) returns (ListRadarReply);
+  rpc GetRadarStatus (stream GetRadarStatusRequest) returns (stream GetRadarStatusReply);
+  rpc getRadarTrack (stream getRadarTrackRequest) returns (stream getRadarTrackReply);
+  rpc GetRadarPlot (stream GetRadarPlotRequest) returns (stream GetRadarPlotReply);
+  rpc SetRadarModel (GetRadarModelRequest) returns (GetRadarModelReply) {
+    option (google.api.http) = {
+      post: "yw/radar/setModel"
+      body: "*"
+    };
+  }
+};
+
+message GetRadarPlotRequest {}
+message GetRadarPlotReply {}
+
+message getRadarTrackRequest {}
+message getRadarTrackReply {}
+
+message CreateRadarRequest {}
+message CreateRadarReply {}
+
+message UpdateRadarRequest {}
+message UpdateRadarReply {}
+
+message DeleteRadarRequest {}
+message DeleteRadarReply {}
+
+message GetRadarStatusRequest {}
+message GetRadarStatusReply {}
+
+message ListRadarRequest {}
+message ListRadarReply {}
+
+message RadarPlot {
+  uint32 plot_number = 1;
+  float plot_azimuth = 2;
+  float plot_distance = 3;
+  float plot_altitude = 4;
+  float radial_velocity = 5;
+  float tangential_velocity = 6;
+  uint32 plot_mode = 7;
+  uint32 plot_type_supplement = 8;
+  uint32 plot_type = 9;
+  float plot_rcs = 10;
+  uint32 hover_status = 11;
+  uint32 plot_reserved = 12;
+}
+
+message GetRadarModelRequest {
+  // 扫描方向 (0：顺时针, 1：逆时针)
+  uint32  scan_direction = 1;
+  // 扫描方式 (0：停止, 1：定点, 2：扇扫, 3：周扫)
+  uint32 scan_mode = 2;
+  // 扫描速度
+  uint32 scan_period = 3;
+  // 水平法线，单位度
+  uint32 horizontal_normal = 4;
+  // 水平扫描范围，单位度
+  uint32 horizontal_range = 5;
+}
+
+message GetRadarModelReply {
+}

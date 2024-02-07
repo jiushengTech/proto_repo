@@ -1,0 +1,82 @@
+syntax = "proto3";
+
+package proto_repo.biz.base_srv.admin;
+import "google/api/annotations.proto";
+import "common/page/page.proto";
+option go_package = "base-service/proto_repo/biz/base_srv/admin;admin";
+option java_multiple_files = true;
+option java_package = "proto_repo.biz.base_srv.admin";
+
+service User {
+	rpc CreateUser (CreateUserRequest) returns (CreateUserReply) {
+		option (google.api.http) = {
+			post: "api/admin/create"
+			body: "*"
+		};
+	};
+	rpc UpdateUser (UpdateUserRequest) returns (UpdateUserReply) {
+		option (google.api.http) = {
+			post: "api/admin/update"
+			body: "*"
+		};
+	};
+	rpc DeleteUser (DeleteUserRequest) returns (DeleteUserReply) {
+		option (google.api.http) = {
+			post: "api/admin/delete"
+			body: "*"
+		};
+	};
+	rpc GetUser (GetUserRequest) returns (GetUserReply){
+		option (google.api.http) = {
+			get: "api/admin/userInfo"
+		};
+	};
+	rpc ListUser (ListUserRequest) returns (ListUserReply) {
+		option (google.api.http) = {
+			post: "api/admin/list"
+			body: "*"
+		};
+	};
+}
+
+message CreateUserRequest {
+	string user_name = 1;
+	string email = 2;
+	string telephone = 3;
+	string password = 4;
+	string remarks = 5;
+}
+message CreateUserReply {
+}
+message UpdateUserRequest {
+	int64 user_id = 1;
+	string email = 2;
+	string telephone = 3;
+	string remarks = 4;
+}
+message UpdateUserReply {}
+
+message DeleteUserRequest {
+	int64 user_id = 1;
+}
+message DeleteUserReply {}
+
+message GetUserRequest {
+	int64 user_id = 1;
+}
+message GetUserReply {
+	int64 user_id = 1;
+	string user_name = 2;
+	string email = 3;
+	string telephone = 4;
+	string remarks = 5;
+	string CreatedAt = 6;
+}
+
+message ListUserRequest {
+	page.PageQuery pageQuery = 1;
+}
+message ListUserReply {
+	page.PageInfo pageInfo = 1;
+	repeated GetUserReply list = 2;
+}

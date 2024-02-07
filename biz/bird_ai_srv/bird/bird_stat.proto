@@ -1,0 +1,231 @@
+syntax = "proto3";
+
+package biz.bird_ai_srv.bird;
+import "common/page/page.proto";
+import "google/api/annotations.proto";
+option go_package = "proto_repo/pb/bird_ai_srv/bird;bird";
+option java_multiple_files = true;
+option java_package = "api.bird";
+
+// 鸟的统计信息服务定义
+service BirdStat {
+
+	// 创建鸟的统计信息
+	rpc CreateBirdStatInfo (CreateBirdStatInfoRequest) returns (page.Response){
+	};
+	// 从相机列表获取鸟的统计信息
+	rpc ListBirdStatFromCamera (ListBirdStatFromCameraRequest) returns (ListBirdStatFromCameraReply){
+		option (google.api.http) = {
+			get: "/yw/bird/stat/camera"
+		};
+	};
+
+	// 从声纹列表获取鸟的统计信息
+	rpc ListBirdStatFromVoicePrint (ListBirdStatFromVoicePrintRequest) returns (ListBirdStatFromVoiceprintReply){
+		option (google.api.http) = {
+			get: "/yw/bird/stat/voiceprint"
+		};
+	};
+
+	// 获取鸟的统计信息列表
+	rpc ListBirdStatInfo (ListBirdStatInfoRequest) returns (ListBirdStatInfoReply){
+		option (google.api.http) = {
+			get: "/yw/bird/stat/info"
+		};
+	};
+}
+
+// 创建鸟的统计信息请求
+message CreateBirdStatInfoRequest {
+	message	BirdStatInfo  {
+		uint64 id = 1;
+
+		// 数据来源 （1：相机 2：声纹）
+		uint32 data_source = 2;
+
+		// 鸟类名称
+		string bird_name = 3;
+
+		// 鸟类相似度
+		double bird_similarity = 4;
+
+		// 关联的采集的鸟数据表的id
+		uint64 source_id = 5;
+
+		// 采集时间
+		string collection_time = 6;
+}
+repeated BirdStatInfo list = 1;
+}
+
+
+// 获取鸟的统计信息请求
+message ListBirdStatInfoRequest {
+	// 分页信息
+	page.PageQuery page = 1;
+
+	// 开始时间
+	string start_time = 2;
+
+	// 结束时间
+	string end_time = 3;
+
+	// 数据来源 （1：相机 2：声纹）
+	string data_source = 4;
+
+	// 鸟类名称
+	string bird_name = 5;
+
+	// 鸟类相似度
+	double bird_similarity = 6;
+}
+
+// 获取鸟的统计信息响应
+message ListBirdStatInfoReply {
+	// 分页信息
+	page.PageInfo page_info =1;
+
+	// 鸟的统计信息列表
+	repeated BirdStatInfo list = 2;
+}
+
+// 从声纹列表获取鸟的统计信息请求
+message ListBirdStatFromVoicePrintRequest {
+	// 分页信息
+	page.PageQuery page = 1;
+
+	// 鸟类名称
+	string bird_name = 2;
+
+	// 开始时间
+	string start_time = 3;
+
+	// 结束时间
+	string end_time = 4;
+}
+
+// 从声纹列表获取鸟的统计信息响应
+message ListBirdStatFromVoiceprintReply {
+	// 分页信息
+	page.PageInfo page_info =1;
+
+	// 鸟的声纹信息列表
+	repeated BirdVoiceprint list = 2;
+}
+
+// 从相机列表获取鸟的统计信息请求
+message ListBirdStatFromCameraRequest {
+	// 分页信息
+	page.PageQuery page = 1;
+
+	// 鸟类名称
+	string bird_name = 2;
+
+	// 开始时间
+	string start_time = 3;
+
+	// 结束时间
+	string end_time = 4;
+}
+
+// 从相机列表获取鸟的统计信息响应
+message ListBirdStatFromCameraReply {
+	// 分页信息
+	page.PageInfo page_info =1;
+
+	// 鸟的相机信息列表
+	repeated BirdCamera list = 2;
+}
+
+// 鸟的声纹信息
+message BirdVoiceprint{
+	// 主键
+	int64 id = 1;
+
+	// 采集时间
+	string collection_time = 2;
+
+	// 创建时间
+	string created_at = 3;
+
+	// 删除时间
+	string deleted_at = 4;
+
+	// 设备id
+	string device_id = 5;
+
+	// 鸟的ID
+	int32 bird_id = 6;
+
+	// 鸟类相似度
+	float bird_similarity = 7;
+
+	// 声纹识别音频URL
+	string recog_sound_url = 8;
+
+	// 声纹识别频谱图URL
+	string recog_spect_url = 9;
+
+	// 鸟类名称
+	string bird_name = 10;
+
+	// 声纹识别ID
+	string recog_id = 11;
+
+	// 同步时间
+	string sync_time = 12;
+}
+
+// 鸟的相机信息
+message BirdCamera {
+	// 主键
+	string id = 1;
+
+	// 创建时间
+	string created_at = 2;
+
+	// 采集时间
+	string collection_time = 3;
+
+	// 删除时间
+	string deleted_at = 4;
+
+	// 设备id
+	string device_id = 5;
+
+	// 鸟的名称
+	string bird_name = 6;
+
+	// 鸟种的相似度
+	int32 bird_similarity = 7;
+
+	// 拍摄原图
+	string source = 8;
+
+	// 识别后的图
+	string result = 9;
+}
+
+// 鸟的统计信息
+message BirdStatInfo {
+	// 主键
+	int64 id = 1;
+
+	// 创建时间
+	string created_at = 2;
+
+	// 采集时间
+	string collection_time = 3;
+
+	// 数据来源 （1：相机 2：声纹）
+	int64 data_source = 5;
+
+	// 鸟类名称
+	string bird_name = 6;
+
+	// 鸟类相似度
+	double bird_similarity = 7;
+
+	// 关联的采集的鸟数据表的id
+	int32 data_id = 8;
+}

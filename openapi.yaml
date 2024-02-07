@@ -1,0 +1,1612 @@
+# Generated with protoc-gen-openapi
+# https://github.com/google/gnostic/tree/master/cmd/protoc-gen-openapi
+
+openapi: 3.0.3
+info:
+    title: ""
+    version: 0.0.1
+paths:
+    /api/env:
+        get:
+            tags:
+                - Env
+            description: 获取环境信息
+            operationId: Env_GetEnv
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/proto_repo.biz.device_srv.env.GetEnvReply'
+    /device_srv/{id}:
+        get:
+            tags:
+                - Device
+            operationId: Device_GetDevice
+            parameters:
+                - name: id
+                  in: path
+                  required: true
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/biz.device_srv.device.GetDeviceReply'
+    /yw/bird/stat/camera:
+        get:
+            tags:
+                - BirdStat
+            description: 从相机列表获取鸟的统计信息
+            operationId: BirdStat_ListBirdStatFromCamera
+            parameters:
+                - name: page.pageNum
+                  in: query
+                  schema:
+                    type: string
+                - name: page.pageSize
+                  in: query
+                  schema:
+                    type: string
+                - name: birdName
+                  in: query
+                  description: 鸟类名称
+                  schema:
+                    type: string
+                - name: startTime
+                  in: query
+                  description: 开始时间
+                  schema:
+                    type: string
+                - name: endTime
+                  in: query
+                  description: 结束时间
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/biz.bird_ai_srv.bird.ListBirdStatFromCameraReply'
+    /yw/bird/stat/info:
+        get:
+            tags:
+                - BirdStat
+            description: 获取鸟的统计信息列表
+            operationId: BirdStat_ListBirdStatInfo
+            parameters:
+                - name: page.pageNum
+                  in: query
+                  schema:
+                    type: string
+                - name: page.pageSize
+                  in: query
+                  schema:
+                    type: string
+                - name: startTime
+                  in: query
+                  description: 开始时间
+                  schema:
+                    type: string
+                - name: endTime
+                  in: query
+                  description: 结束时间
+                  schema:
+                    type: string
+                - name: dataSource
+                  in: query
+                  description: 数据来源 （1：相机 2：声纹）
+                  schema:
+                    type: string
+                - name: birdName
+                  in: query
+                  description: 鸟类名称
+                  schema:
+                    type: string
+                - name: birdSimilarity
+                  in: query
+                  description: 鸟类相似度
+                  schema:
+                    type: number
+                    format: double
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/biz.bird_ai_srv.bird.ListBirdStatInfoReply'
+    /yw/bird/stat/voiceprint:
+        get:
+            tags:
+                - BirdStat
+            description: 从声纹列表获取鸟的统计信息
+            operationId: BirdStat_ListBirdStatFromVoicePrint
+            parameters:
+                - name: page.pageNum
+                  in: query
+                  schema:
+                    type: string
+                - name: page.pageSize
+                  in: query
+                  schema:
+                    type: string
+                - name: birdName
+                  in: query
+                  description: 鸟类名称
+                  schema:
+                    type: string
+                - name: startTime
+                  in: query
+                  description: 开始时间
+                  schema:
+                    type: string
+                - name: endTime
+                  in: query
+                  description: 结束时间
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/biz.bird_ai_srv.bird.ListBirdStatFromVoiceprintReply'
+    /yw/bird/type/create:
+        post:
+            tags:
+                - BirdType
+            operationId: BirdType_CreateBirdType
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/biz.bird_ai_srv.bird.CreateBirdTypeRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/page.Response'
+    /yw/bird/type/list:
+        get:
+            tags:
+                - BirdType
+            operationId: BirdType_ListBirdType
+            parameters:
+                - name: id
+                  in: query
+                  schema:
+                    type: integer
+                    format: uint32
+                - name: name
+                  in: query
+                  schema:
+                    type: string
+                - name: pid
+                  in: query
+                  schema:
+                    type: integer
+                    format: uint32
+                - name: classification
+                  in: query
+                  schema:
+                    type: integer
+                    format: uint32
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/biz.bird_ai_srv.bird.ListBirdTypeReply'
+    api/admin/create:
+        post:
+            tags:
+                - User
+            operationId: User_CreateUser
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/proto_repo.biz.base_srv.admin.CreateUserRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/proto_repo.biz.base_srv.admin.CreateUserReply'
+    api/admin/delete:
+        post:
+            tags:
+                - User
+            operationId: User_DeleteUser
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/proto_repo.biz.base_srv.admin.DeleteUserRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/proto_repo.biz.base_srv.admin.DeleteUserReply'
+    api/admin/list:
+        post:
+            tags:
+                - User
+            operationId: User_ListUser
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/proto_repo.biz.base_srv.admin.ListUserRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/proto_repo.biz.base_srv.admin.ListUserReply'
+    api/admin/login:
+        post:
+            tags:
+                - Login
+            operationId: Login_Login
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/proto_repo.biz.base_srv.admin.LoginRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/proto_repo.biz.base_srv.admin.LoginReply'
+    api/admin/update:
+        post:
+            tags:
+                - User
+            operationId: User_UpdateUser
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/proto_repo.biz.base_srv.admin.UpdateUserRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/proto_repo.biz.base_srv.admin.UpdateUserReply'
+    api/admin/userInfo:
+        get:
+            tags:
+                - User
+            operationId: User_GetUser
+            parameters:
+                - name: userId
+                  in: query
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/proto_repo.biz.base_srv.admin.GetUserReply'
+    api/system/status:
+        get:
+            tags:
+                - SysStatus
+            operationId: SysStatus_GetSysStatus
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/proto_repo.biz.base_srv.system.GetSysStatusReply'
+    yw/bird/getBirdDistribution:
+        get:
+            tags:
+                - BirdData
+            description: 获取鸟类分布
+            operationId: BirdData_GetBirdDistribution
+            parameters:
+                - name: period
+                  in: query
+                  description: '1: 周  2: 月 3: 年'
+                  schema:
+                    type: integer
+                    format: uint32
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/biz.bird_ai_srv.bird.GetBirdDistributionReply'
+    yw/bird/getBirdEvolution:
+        get:
+            tags:
+                - BirdData
+            operationId: BirdData_GetBirdEvolution
+            parameters:
+                - name: period
+                  in: query
+                  schema:
+                    type: integer
+                    format: uint32
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/biz.bird_ai_srv.bird.GetBirdEvolutionReply'
+    yw/bird/info/createBird:
+        post:
+            tags:
+                - BirdInfo
+            operationId: BirdInfo_CreateBird
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/biz.bird_ai_srv.bird.CreateBirdRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/biz.bird_ai_srv.bird.CreateBirdReply'
+    yw/bird/info/deleteBird:
+        delete:
+            tags:
+                - BirdInfo
+            operationId: BirdInfo_DeleteBird
+            parameters:
+                - name: id
+                  in: query
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/biz.bird_ai_srv.bird.DeleteBirdReply'
+    yw/bird/info/getBirdDetail:
+        get:
+            tags:
+                - BirdInfo
+            operationId: BirdInfo_GetBirdDetailById
+            parameters:
+                - name: id
+                  in: query
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/biz.bird_ai_srv.bird.GetBirdDetailByIdReply'
+    yw/bird/info/listBaseByOrder:
+        get:
+            tags:
+                - BirdInfo
+            operationId: BirdInfo_ListBirdBaseByOrder
+            parameters:
+                - name: organismOrder
+                  in: query
+                  schema:
+                    type: integer
+                    format: uint32
+                - name: page.pageNum
+                  in: query
+                  schema:
+                    type: string
+                - name: page.pageSize
+                  in: query
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/biz.bird_ai_srv.bird.ListBirdBaseByOrderReply'
+    yw/bird/info/listBird:
+        get:
+            tags:
+                - BirdInfo
+            description: 查询鸟类信息
+            operationId: BirdInfo_ListBird
+            parameters:
+                - name: id
+                  in: query
+                  schema:
+                    type: string
+                - name: name
+                  in: query
+                  schema:
+                    type: string
+                - name: organismOrder
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+                - name: organismFamily
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+                - name: organismGenus
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+                - name: protectionGrade
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+                - name: endangeredGrade
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+                - name: resident
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+                - name: createdAt
+                  in: query
+                  schema:
+                    type: string
+                - name: page.pageNum
+                  in: query
+                  schema:
+                    type: string
+                - name: page.pageSize
+                  in: query
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/biz.bird_ai_srv.bird.ListBirdReply'
+    yw/bird/info/listBirdOrder:
+        get:
+            tags:
+                - BirdInfo
+            operationId: BirdInfo_ListBirdOrder
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/biz.bird_ai_srv.bird.ListBirdOrderReply'
+    yw/bird/info/updateBird:
+        put:
+            tags:
+                - BirdInfo
+            operationId: BirdInfo_UpdateBird
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/biz.bird_ai_srv.bird.UpdateBirdRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/biz.bird_ai_srv.bird.UpdateBirdReply'
+    yw/bird/info/uploadImage:
+        post:
+            tags:
+                - BirdInfo
+            operationId: BirdInfo_UploadImage
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/biz.bird_ai_srv.bird.UploadImageRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/biz.bird_ai_srv.bird.UploadImageResponse'
+    yw/bird/listBirdDynamic:
+        get:
+            tags:
+                - BirdData
+            description: 获取鸟类动态
+            operationId: BirdData_ListBirdDynamic
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/biz.bird_ai_srv.bird.ListBirdDynamicReply'
+    yw/radar/setModel:
+        post:
+            tags:
+                - Radar
+            operationId: Radar_SetRadarModel
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/biz.device_srv.device.GetRadarModelRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/biz.device_srv.device.GetRadarModelReply'
+    yw/system/sys_dict_data:
+        get:
+            tags:
+                - SysDictData
+            operationId: SysDictData_ListSysDictData
+            parameters:
+                - name: dictCode
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+                - name: dictLabel
+                  in: query
+                  schema:
+                    type: string
+                - name: dictValue
+                  in: query
+                  schema:
+                    type: string
+                - name: dictType
+                  in: query
+                  schema:
+                    type: string
+                - name: status
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+                - name: pageQuery.pageNum
+                  in: query
+                  schema:
+                    type: string
+                - name: pageQuery.pageSize
+                  in: query
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/biz.base_srv.system.ListSysDictDataReply'
+        put:
+            tags:
+                - SysDictData
+            operationId: SysDictData_UpdateSysDictData
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/biz.base_srv.system.UpdateSysDictDataRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/biz.base_srv.system.UpdateSysDictDataReply'
+        post:
+            tags:
+                - SysDictData
+            operationId: SysDictData_CreateSysDictData
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/biz.base_srv.system.CreateSysDictDataRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/biz.base_srv.system.CreateSysDictDataReply'
+    yw/system/sys_dict_data/{dictCode}:
+        get:
+            tags:
+                - SysDictData
+            operationId: SysDictData_GetSysDictData
+            parameters:
+                - name: dictCode
+                  in: path
+                  required: true
+                  schema:
+                    type: integer
+                    format: uint32
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/biz.base_srv.system.GetSysDictDataReply'
+        delete:
+            tags:
+                - SysDictData
+            operationId: SysDictData_DeleteSysDictData
+            parameters:
+                - name: dictCode
+                  in: path
+                  required: true
+                  schema:
+                    type: integer
+                    format: uint32
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/biz.base_srv.system.DeleteSysDictDataReply'
+    yw/system/sys_dict_type:
+        get:
+            tags:
+                - SysDictType
+            operationId: SysDictType_ListSysDictType
+            parameters:
+                - name: pageQuery.pageNum
+                  in: query
+                  schema:
+                    type: string
+                - name: pageQuery.pageSize
+                  in: query
+                  schema:
+                    type: string
+                - name: DictId
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+                - name: DictName
+                  in: query
+                  schema:
+                    type: string
+                - name: DictType
+                  in: query
+                  schema:
+                    type: string
+                - name: Status
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/biz.base_srv.system.ListSysDictTypeReply'
+        put:
+            tags:
+                - SysDictType
+            operationId: SysDictType_UpdateSysDictType
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/biz.base_srv.system.UpdateSysDictTypeRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/biz.base_srv.system.UpdateSysDictTypeReply'
+        post:
+            tags:
+                - SysDictType
+            operationId: SysDictType_CreateSysDictType
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/biz.base_srv.system.CreateSysDictTypeRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/biz.base_srv.system.CreateSysDictTypeReply'
+    yw/system/sys_dict_type/{dictId}:
+        get:
+            tags:
+                - SysDictType
+            operationId: SysDictType_GetSysDictType
+            parameters:
+                - name: dictId
+                  in: path
+                  required: true
+                  schema:
+                    type: integer
+                    format: int32
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/biz.base_srv.system.GetSysDictTypeReply'
+        delete:
+            tags:
+                - SysDictType
+            operationId: SysDictType_DeleteSysDictType
+            parameters:
+                - name: dictId
+                  in: path
+                  required: true
+                  schema:
+                    type: integer
+                    format: uint32
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/biz.base_srv.system.DeleteSysDictTypeReply'
+components:
+    schemas:
+        biz.base_srv.system.CreateSysDictDataReply:
+            type: object
+            properties: {}
+        biz.base_srv.system.CreateSysDictDataRequest:
+            type: object
+            properties:
+                dictSort:
+                    type: integer
+                    format: int32
+                dictLabel:
+                    type: string
+                dictValue:
+                    type: string
+                dictType:
+                    type: string
+                cssClass:
+                    type: string
+                listClass:
+                    type: string
+                isDefault:
+                    type: string
+                status:
+                    type: integer
+                    format: int32
+                default:
+                    type: string
+                remark:
+                    type: string
+        biz.base_srv.system.CreateSysDictTypeReply:
+            type: object
+            properties: {}
+        biz.base_srv.system.CreateSysDictTypeRequest:
+            type: object
+            properties:
+                dictName:
+                    type: string
+                dictType:
+                    type: string
+                status:
+                    type: integer
+                    format: int32
+                remark:
+                    type: string
+        biz.base_srv.system.DeleteSysDictDataReply:
+            type: object
+            properties: {}
+        biz.base_srv.system.DeleteSysDictTypeReply:
+            type: object
+            properties: {}
+        biz.base_srv.system.GetSysDictDataReply:
+            type: object
+            properties:
+                dictCode:
+                    type: integer
+                    format: int32
+                dictSort:
+                    type: integer
+                    format: int32
+                dictLabel:
+                    type: string
+                dictValue:
+                    type: string
+                dictType:
+                    type: string
+                cssClass:
+                    type: string
+                listClass:
+                    type: string
+                isDefault:
+                    type: string
+                status:
+                    type: integer
+                    format: int32
+                default:
+                    type: string
+                remark:
+                    type: string
+        biz.base_srv.system.GetSysDictTypeReply:
+            type: object
+            properties:
+                dictId:
+                    type: integer
+                    format: int32
+                dictName:
+                    type: string
+                dictType:
+                    type: string
+                status:
+                    type: integer
+                    format: int32
+                remark:
+                    type: string
+        biz.base_srv.system.ListSysDictDataReply:
+            type: object
+            properties:
+                pageInfo:
+                    $ref: '#/components/schemas/page.PageInfo'
+                list:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/biz.base_srv.system.GetSysDictDataReply'
+        biz.base_srv.system.ListSysDictTypeReply:
+            type: object
+            properties:
+                pageInfo:
+                    $ref: '#/components/schemas/page.PageInfo'
+                list:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/biz.base_srv.system.GetSysDictTypeReply'
+        biz.base_srv.system.UpdateSysDictDataReply:
+            type: object
+            properties: {}
+        biz.base_srv.system.UpdateSysDictDataRequest:
+            type: object
+            properties:
+                dictSort:
+                    type: integer
+                    format: int32
+                dictLabel:
+                    type: string
+                dictValue:
+                    type: string
+                dictType:
+                    type: string
+                cssClass:
+                    type: string
+                listClass:
+                    type: string
+                isDefault:
+                    type: string
+                status:
+                    type: integer
+                    format: int32
+                default:
+                    type: string
+                remark:
+                    type: string
+        biz.base_srv.system.UpdateSysDictTypeReply:
+            type: object
+            properties: {}
+        biz.base_srv.system.UpdateSysDictTypeRequest:
+            type: object
+            properties:
+                dictId:
+                    type: integer
+                    format: int32
+                dictName:
+                    type: string
+                dictType:
+                    type: string
+                status:
+                    type: integer
+                    format: int32
+                remark:
+                    type: string
+        biz.bird_ai_srv.bird.BirdBase:
+            type: object
+            properties:
+                id:
+                    type: string
+                name:
+                    type: string
+                titlePhoto:
+                    type: string
+        biz.bird_ai_srv.bird.BirdCamera:
+            type: object
+            properties:
+                id:
+                    type: string
+                    description: 主键
+                createdAt:
+                    type: string
+                    description: 创建时间
+                collectionTime:
+                    type: string
+                    description: 采集时间
+                deletedAt:
+                    type: string
+                    description: 删除时间
+                deviceId:
+                    type: string
+                    description: 设备id
+                birdName:
+                    type: string
+                    description: 鸟的名称
+                birdSimilarity:
+                    type: integer
+                    description: 鸟种的相似度
+                    format: int32
+                source:
+                    type: string
+                    description: 拍摄原图
+                result:
+                    type: string
+                    description: 识别后的图
+            description: 鸟的相机信息
+        biz.bird_ai_srv.bird.BirdEvolutionSets_BirdEvolution:
+            type: object
+            properties:
+                id:
+                    type: integer
+                    format: uint32
+                latitude:
+                    type: string
+                longitude:
+                    type: string
+                birdCount:
+                    type: integer
+                    format: uint32
+        biz.bird_ai_srv.bird.BirdStatInfo:
+            type: object
+            properties:
+                id:
+                    type: string
+                    description: 主键
+                createdAt:
+                    type: string
+                    description: 创建时间
+                collectionTime:
+                    type: string
+                    description: 采集时间
+                dataSource:
+                    type: string
+                    description: 数据来源 （1：相机 2：声纹）
+                birdName:
+                    type: string
+                    description: 鸟类名称
+                birdSimilarity:
+                    type: number
+                    description: 鸟类相似度
+                    format: double
+                dataId:
+                    type: integer
+                    description: 关联的采集的鸟数据表的id
+                    format: int32
+            description: 鸟的统计信息
+        biz.bird_ai_srv.bird.BirdVoiceprint:
+            type: object
+            properties:
+                id:
+                    type: string
+                    description: 主键
+                collectionTime:
+                    type: string
+                    description: 采集时间
+                createdAt:
+                    type: string
+                    description: 创建时间
+                deletedAt:
+                    type: string
+                    description: 删除时间
+                deviceId:
+                    type: string
+                    description: 设备id
+                birdId:
+                    type: integer
+                    description: 鸟的ID
+                    format: int32
+                birdSimilarity:
+                    type: number
+                    description: 鸟类相似度
+                    format: float
+                recogSoundUrl:
+                    type: string
+                    description: 声纹识别音频URL
+                recogSpectUrl:
+                    type: string
+                    description: 声纹识别频谱图URL
+                birdName:
+                    type: string
+                    description: 鸟类名称
+                recogId:
+                    type: string
+                    description: 声纹识别ID
+                syncTime:
+                    type: string
+                    description: 同步时间
+            description: 鸟的声纹信息
+        biz.bird_ai_srv.bird.CreateBirdReply:
+            type: object
+            properties: {}
+        biz.bird_ai_srv.bird.CreateBirdRequest:
+            type: object
+            properties:
+                name:
+                    type: string
+                blurb:
+                    type: string
+                details:
+                    type: string
+                habitat:
+                    type: string
+                distribution:
+                    type: string
+                organismOrder:
+                    type: integer
+                    format: int32
+                organismFamily:
+                    type: integer
+                    format: int32
+                organismGenus:
+                    type: integer
+                    format: int32
+                organismSpecies:
+                    type: integer
+                    format: int32
+                protectionGrade:
+                    type: integer
+                    format: int32
+                endangeredGrade:
+                    type: integer
+                    format: int32
+                resident:
+                    type: integer
+                    format: int32
+                titlePhoto:
+                    type: string
+        biz.bird_ai_srv.bird.CreateBirdTypeRequest:
+            type: object
+            properties:
+                name:
+                    type: string
+                pid:
+                    type: integer
+                    format: uint32
+                classification:
+                    type: integer
+                    format: uint32
+        biz.bird_ai_srv.bird.DeleteBirdReply:
+            type: object
+            properties: {}
+        biz.bird_ai_srv.bird.DeviceCoordinate_BirdInfo:
+            type: object
+            properties:
+                birdId:
+                    type: integer
+                    format: uint32
+                birdName:
+                    type: string
+                birdTitlePhoto:
+                    type: string
+        biz.bird_ai_srv.bird.GetBirdDetailByIdReply:
+            type: object
+            properties:
+                id:
+                    type: string
+                name:
+                    type: string
+                blurb:
+                    type: string
+                details:
+                    type: string
+                habitat:
+                    type: string
+                distribution:
+                    type: string
+                organismOrder:
+                    type: integer
+                    format: int32
+                organismFamily:
+                    type: integer
+                    format: int32
+                organismGenus:
+                    type: integer
+                    format: int32
+                organismSpecies:
+                    type: integer
+                    format: int32
+                protectionGrade:
+                    type: integer
+                    format: int32
+                endangeredGrade:
+                    type: integer
+                    format: int32
+                resident:
+                    type: integer
+                    format: int32
+                titlePhoto:
+                    type: string
+                createdAt:
+                    type: string
+                updatedAt:
+                    type: string
+        biz.bird_ai_srv.bird.GetBirdDistributionReply:
+            type: object
+            properties:
+                DeviceCoordinateList:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/biz.bird_ai_srv.bird.GetBirdDistributionReply_DeviceCoordinate'
+        biz.bird_ai_srv.bird.GetBirdDistributionReply_DeviceCoordinate:
+            type: object
+            properties:
+                deviceLatitude:
+                    type: string
+                deviceLongitude:
+                    type: string
+                deviceId:
+                    type: integer
+                    format: uint32
+                birdInfoList:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/biz.bird_ai_srv.bird.DeviceCoordinate_BirdInfo'
+        biz.bird_ai_srv.bird.GetBirdEvolutionReply:
+            type: object
+            properties:
+                birdEvolutionSets:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/biz.bird_ai_srv.bird.GetBirdEvolutionReply_BirdEvolutionSets'
+        biz.bird_ai_srv.bird.GetBirdEvolutionReply_BirdEvolutionSets:
+            type: object
+            properties:
+                birdEvolutionList:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/biz.bird_ai_srv.bird.BirdEvolutionSets_BirdEvolution'
+                timestamp:
+                    type: string
+        biz.bird_ai_srv.bird.ListBirdBaseByOrderReply:
+            type: object
+            properties:
+                pageInfo:
+                    $ref: '#/components/schemas/page.PageInfo'
+                list:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/biz.bird_ai_srv.bird.BirdBase'
+        biz.bird_ai_srv.bird.ListBirdDynamicReply:
+            type: object
+            properties:
+                birdDynamicList:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/biz.bird_ai_srv.bird.ListBirdDynamicReply_BirdDynamicList'
+        biz.bird_ai_srv.bird.ListBirdDynamicReply_BirdDynamicList:
+            type: object
+            properties:
+                id:
+                    type: integer
+                    format: uint32
+                latitude:
+                    type: string
+                longitude:
+                    type: string
+                birdId:
+                    type: integer
+                    format: uint32
+                name:
+                    type: string
+                photoPath:
+                    type: string
+                blurb:
+                    type: string
+                details:
+                    type: string
+        biz.bird_ai_srv.bird.ListBirdOrderReply:
+            type: object
+            properties:
+                birdOrderList:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/biz.bird_ai_srv.bird.ListBirdOrderReply_BirdOrderList'
+        biz.bird_ai_srv.bird.ListBirdOrderReply_BirdOrderList:
+            type: object
+            properties:
+                id:
+                    type: string
+                name:
+                    type: string
+        biz.bird_ai_srv.bird.ListBirdReply:
+            type: object
+            properties:
+                pageInfo:
+                    $ref: '#/components/schemas/page.PageInfo'
+                list:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/biz.bird_ai_srv.bird.GetBirdDetailByIdReply'
+        biz.bird_ai_srv.bird.ListBirdStatFromCameraReply:
+            type: object
+            properties:
+                pageInfo:
+                    allOf:
+                        - $ref: '#/components/schemas/page.PageInfo'
+                    description: 分页信息
+                list:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/biz.bird_ai_srv.bird.BirdCamera'
+                    description: 鸟的相机信息列表
+            description: 从相机列表获取鸟的统计信息响应
+        biz.bird_ai_srv.bird.ListBirdStatFromVoiceprintReply:
+            type: object
+            properties:
+                pageInfo:
+                    allOf:
+                        - $ref: '#/components/schemas/page.PageInfo'
+                    description: 分页信息
+                list:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/biz.bird_ai_srv.bird.BirdVoiceprint'
+                    description: 鸟的声纹信息列表
+            description: 从声纹列表获取鸟的统计信息响应
+        biz.bird_ai_srv.bird.ListBirdStatInfoReply:
+            type: object
+            properties:
+                pageInfo:
+                    allOf:
+                        - $ref: '#/components/schemas/page.PageInfo'
+                    description: 分页信息
+                list:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/biz.bird_ai_srv.bird.BirdStatInfo'
+                    description: 鸟的统计信息列表
+            description: 获取鸟的统计信息响应
+        biz.bird_ai_srv.bird.ListBirdTypeReply:
+            type: object
+            properties:
+                list:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/biz.bird_ai_srv.bird.ListBirdTypeReply_BirdType'
+        biz.bird_ai_srv.bird.ListBirdTypeReply_BirdType:
+            type: object
+            properties:
+                id:
+                    type: integer
+                    format: uint32
+                name:
+                    type: string
+                pid:
+                    type: integer
+                    format: uint32
+                classification:
+                    type: integer
+                    format: uint32
+        biz.bird_ai_srv.bird.UpdateBirdReply:
+            type: object
+            properties: {}
+        biz.bird_ai_srv.bird.UpdateBirdRequest:
+            type: object
+            properties:
+                id:
+                    type: string
+                name:
+                    type: string
+                blurb:
+                    type: string
+                details:
+                    type: string
+                habitat:
+                    type: string
+                distribution:
+                    type: string
+                organismOrder:
+                    type: integer
+                    format: int32
+                organismFamily:
+                    type: integer
+                    format: int32
+                organismGenus:
+                    type: integer
+                    format: int32
+                organismSpecies:
+                    type: integer
+                    format: int32
+                protectionGrade:
+                    type: integer
+                    format: int32
+                endangeredGrade:
+                    type: integer
+                    format: int32
+                resident:
+                    type: integer
+                    format: int32
+                titlePhoto:
+                    type: string
+        biz.bird_ai_srv.bird.UploadImageRequest:
+            type: object
+            properties:
+                filename:
+                    type: string
+                data:
+                    type: string
+                    format: bytes
+        biz.bird_ai_srv.bird.UploadImageResponse:
+            type: object
+            properties:
+                url:
+                    type: string
+        biz.device_srv.device.GetDeviceReply:
+            type: object
+            properties:
+                deviceId:
+                    type: string
+                deviceName:
+                    type: string
+                deviceStatus:
+                    type: string
+        biz.device_srv.device.GetRadarModelReply:
+            type: object
+            properties: {}
+        biz.device_srv.device.GetRadarModelRequest:
+            type: object
+            properties:
+                scanDirection:
+                    type: integer
+                    description: 扫描方向 (0：顺时针, 1：逆时针)
+                    format: uint32
+                scanMode:
+                    type: integer
+                    description: 扫描方式 (0：停止, 1：定点, 2：扇扫, 3：周扫)
+                    format: uint32
+                scanPeriod:
+                    type: integer
+                    description: 扫描速度
+                    format: uint32
+                horizontalNormal:
+                    type: integer
+                    description: 水平法线，单位度
+                    format: uint32
+                horizontalRange:
+                    type: integer
+                    description: 水平扫描范围，单位度
+                    format: uint32
+        page.PageInfo:
+            type: object
+            properties:
+                total:
+                    type: string
+                pageNum:
+                    type: string
+                pageSize:
+                    type: string
+                pages:
+                    type: string
+        page.PageQuery:
+            type: object
+            properties:
+                pageNum:
+                    type: string
+                pageSize:
+                    type: string
+        page.Response:
+            type: object
+            properties:
+                code:
+                    type: integer
+                    format: int32
+                message:
+                    type: string
+        proto_repo.biz.base_srv.admin.CreateUserReply:
+            type: object
+            properties: {}
+        proto_repo.biz.base_srv.admin.CreateUserRequest:
+            type: object
+            properties:
+                userName:
+                    type: string
+                email:
+                    type: string
+                telephone:
+                    type: string
+                password:
+                    type: string
+                remarks:
+                    type: string
+        proto_repo.biz.base_srv.admin.DeleteUserReply:
+            type: object
+            properties: {}
+        proto_repo.biz.base_srv.admin.DeleteUserRequest:
+            type: object
+            properties:
+                userId:
+                    type: string
+        proto_repo.biz.base_srv.admin.GetUserReply:
+            type: object
+            properties:
+                userId:
+                    type: string
+                userName:
+                    type: string
+                email:
+                    type: string
+                telephone:
+                    type: string
+                remarks:
+                    type: string
+                CreatedAt:
+                    type: string
+        proto_repo.biz.base_srv.admin.ListUserReply:
+            type: object
+            properties:
+                pageInfo:
+                    $ref: '#/components/schemas/page.PageInfo'
+                list:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/proto_repo.biz.base_srv.admin.GetUserReply'
+        proto_repo.biz.base_srv.admin.ListUserRequest:
+            type: object
+            properties:
+                pageQuery:
+                    $ref: '#/components/schemas/page.PageQuery'
+        proto_repo.biz.base_srv.admin.LoginReply:
+            type: object
+            properties:
+                token:
+                    type: string
+                userId:
+                    type: string
+                userName:
+                    type: string
+                email:
+                    type: string
+        proto_repo.biz.base_srv.admin.LoginRequest:
+            type: object
+            properties:
+                userName:
+                    type: string
+                passWord:
+                    type: string
+        proto_repo.biz.base_srv.admin.UpdateUserReply:
+            type: object
+            properties: {}
+        proto_repo.biz.base_srv.admin.UpdateUserRequest:
+            type: object
+            properties:
+                userId:
+                    type: string
+                email:
+                    type: string
+                telephone:
+                    type: string
+                remarks:
+                    type: string
+        proto_repo.biz.base_srv.system.GetSysStatusReply:
+            type: object
+            properties:
+                cpuNum:
+                    type: string
+                cpuUs:
+                    type: string
+                memTotal:
+                    type: string
+                mem:
+                    type: string
+                diskTotal:
+                    type: string
+                disk:
+                    type: string
+                updateTime:
+                    type: string
+        proto_repo.biz.device_srv.env.GetEnvReply:
+            type: object
+            properties:
+                pressure:
+                    type: string
+                    description: 气压
+                windDirection:
+                    type: string
+                    description: 风向
+                humidity:
+                    type: string
+                    description: 相对湿度
+                temperature:
+                    type: string
+                    description: 温度，单位为摄氏度或华氏度
+                windSpeed:
+                    type: string
+                    description: 风速
+                rainfall:
+                    type: string
+                    description: 降雨量
+tags:
+    - name: BirdData
+      description: 鸟的数据管理
+    - name: BirdInfo
+      description: 鸟的基础信息管理
+    - name: BirdStat
+      description: 鸟的统计信息服务定义
+    - name: BirdType
+      description: 鸟的生物分类管理
+    - name: Device
+    - name: Env
+    - name: Login
+    - name: Radar
+      description: 仅限21所雷达
+    - name: SysDictData
+    - name: SysDictType
+    - name: SysStatus
+    - name: User

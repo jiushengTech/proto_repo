@@ -1,0 +1,182 @@
+syntax = "proto3";
+
+package biz.bird_ai_srv.bird;
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+import "common/page/page.proto";
+import "google/protobuf/descriptor.proto";
+
+
+option go_package = "proto_repo/pb/bird_ai_srv/bird;bird";
+option java_multiple_files = true;
+option java_package = "api.bird";
+
+// 鸟的基础信息管理
+service BirdInfo {
+	//查询鸟类信息
+	rpc ListBird (ListBirdRequest) returns (ListBirdReply){
+		option (google.api.http) = {
+			get: "yw/bird/info/listBird"
+		};
+	};
+	rpc CreateBird (CreateBirdRequest) returns (CreateBirdReply){
+		option (google.api.http) = {
+			post: "yw/bird/info/createBird"
+			body: "*"
+		};
+	};
+	rpc UpdateBird (UpdateBirdRequest) returns (UpdateBirdReply){
+		option (google.api.http) = {
+			put: "yw/bird/info/updateBird"
+			body: "*"
+		};
+	};
+	rpc DeleteBird (DeleteBirdRequest) returns (DeleteBirdReply){
+		option (google.api.http) = {
+			delete: "yw/bird/info/deleteBird"
+		};
+	};
+	rpc GetBird (GetBirdRequest) returns (GetBirdReply);
+	rpc GetBirdDetailById (GetBirdDetailByIdRequest) returns (GetBirdDetailByIdReply){
+		option (google.api.http) = {
+			get: "yw/bird/info/getBirdDetail"
+		};
+	};
+	rpc ListBirdOrder (google.protobuf.Empty) returns (ListBirdOrderReply){
+		option (google.api.http) = {
+			get: "yw/bird/info/listBirdOrder"
+		};
+	};
+	rpc ListBirdBaseByOrder (ListBirdBaseByOrderRequest) returns (ListBirdBaseByOrderReply){
+		option (google.api.http) = {
+			get: "yw/bird/info/listBaseByOrder"
+		};
+	};
+	rpc UploadImage (UploadImageRequest) returns (UploadImageResponse){
+		option (google.api.http) = {
+			post: "yw/bird/info/uploadImage"
+			body: "*"
+		};
+	};
+
+
+}
+message UploadImageRequest{
+	string filename  = 1;
+	bytes data = 2;
+}
+
+message UploadImageResponse{
+	string url   = 1;
+}
+
+
+message ListBirdRequest {
+	uint64 id = 1;
+	string name = 2;
+	int32 organism_order = 3;
+	int32 organism_family = 4;
+	int32 organism_genus = 5;
+	int32 protection_grade = 6;
+	int32 endangered_grade = 7;
+	int32 resident = 8;
+	string created_at = 9;
+	page.PageQuery page = 10;
+}
+
+message ListBirdReply {
+	page.PageInfo page_info = 1;
+	repeated GetBirdDetailByIdReply list = 2;
+}
+
+message GetBirdDetailByIdRequest{
+	uint64 id = 1;
+}
+
+message GetBirdDetailByIdReply{
+	uint64 id = 1;
+	string name = 2;
+	string blurb = 3;
+	string details = 4;
+	string habitat = 5;
+	string distribution = 6;
+	int32 organism_order = 10;
+	int32 organism_family = 11;
+	int32 organism_genus = 12;
+	int32 organism_species = 13;
+	int32 protection_grade = 14;
+	int32 endangered_grade = 15;
+	int32 resident = 16;
+	string title_photo = 17;
+	string created_at = 18;
+	string updated_at = 19;
+}
+
+message CreateBirdRequest {
+	string name = 2;
+	string blurb = 3;
+	string details = 4;
+	string habitat = 5;
+	string distribution = 6;
+	int32 organism_order = 10;
+	int32 organism_family = 11;
+	int32 organism_genus = 12;
+	int32 organism_species = 13;
+	int32 protection_grade = 14;
+	int32 endangered_grade = 15;
+	int32 resident = 16;
+	string title_photo = 18;
+}
+message CreateBirdReply {}
+
+message UpdateBirdRequest {
+	uint64 id=1;
+	string name = 2;
+	string blurb = 3;
+	string details = 4;
+	string habitat = 5;
+	string distribution = 6;
+	int32 organism_order = 10;
+	int32 organism_family = 11;
+	int32 organism_genus = 12;
+	int32 organism_species = 13;
+	int32 protection_grade = 14;
+	int32 endangered_grade = 15;
+	int32 resident = 16;
+	string title_photo = 18;
+}
+message UpdateBirdReply {}
+
+message DeleteBirdRequest {
+	uint64 id = 1;
+}
+message DeleteBirdReply {}
+
+message GetBirdRequest {}
+message GetBirdReply {}
+
+message ListBirdOrderReply {
+	message BirdOrderList {
+		int64 id = 1;
+		string name = 2;
+	}
+	repeated BirdOrderList birdOrderList = 1;
+}
+
+message ListBirdBaseByOrderRequest {
+	uint32 organism_order =1;
+	page.PageQuery page = 2;
+}
+
+message BirdBase {
+	int64 id = 1;
+	string name = 2;
+	string titlePhoto = 4;
+}
+
+message ListBirdBaseByOrderReply {
+	page.PageInfo page_info = 1;
+	repeated BirdBase list = 2;
+}
+
+
