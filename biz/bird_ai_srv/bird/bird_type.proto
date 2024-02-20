@@ -10,15 +10,20 @@ option java_package = "api.bird";
 
 // 鸟的生物分类管理
 service BirdType {
+	// 创建鸟的生物分类
 	rpc CreateBirdType (CreateBirdTypeRequest) returns (page.Response){
 		option (google.api.http) = {
 			post: "/yw/bird/type/create"
 			body: "*"
 		};
 	};
+	// 更新鸟的生物分类
 	rpc UpdateBirdType (UpdateBirdTypeRequest) returns (UpdateBirdTypeReply);
+	// 删除鸟的生物分类
 	rpc DeleteBirdType (DeleteBirdTypeRequest) returns (DeleteBirdTypeReply);
+	// 获取鸟的生物分类
 	rpc GetBirdType (GetBirdTypeRequest) returns (GetBirdTypeReply);
+	// 获取鸟的生物分类列表
 	rpc ListBirdType (ListBirdTypeRequest) returns (ListBirdTypeReply){
 		option (google.api.http) = {
 			get: "/yw/bird/type/list"
