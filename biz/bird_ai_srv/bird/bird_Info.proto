@@ -60,7 +60,8 @@ service BirdInfo {
 	};
 	rpc ListBirdTitlePhotoByName (ListBirdTitlePhotoByNameRequest) returns (ListBirdTitlePhotoByNameReply){
 		option (google.api.http) = {
-			get: "api/bird/info/listBirdTitlePhotoByName"
+			post: "api/bird/info/listBirdTitlePhotoByName"
+			body: "*"
 		};
 	};
 
