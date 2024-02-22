@@ -16,21 +16,21 @@ service BirdStat {
 	// 从相机列表获取鸟的统计信息
 	rpc ListBirdStatFromCamera (ListBirdStatFromCameraRequest) returns (ListBirdStatFromCameraReply){
 		option (google.api.http) = {
-			get: "/yw/bird/stat/camera"
+			get: "/api/bird/stat/camera"
 		};
 	};
 
 	// 从声纹列表获取鸟的统计信息
 	rpc ListBirdStatFromVoicePrint (ListBirdStatFromVoicePrintRequest) returns (ListBirdStatFromVoiceprintReply){
 		option (google.api.http) = {
-			get: "/yw/bird/stat/voiceprint"
+			get: "/api/bird/stat/voiceprint"
 		};
 	};
 
 	// 获取鸟的统计信息列表
 	rpc ListBirdStatInfo (ListBirdStatInfoRequest) returns (ListBirdStatInfoReply){
 		option (google.api.http) = {
-			get: "/yw/bird/stat/info"
+			get: "/api/bird/stat/info"
 		};
 	};
 }

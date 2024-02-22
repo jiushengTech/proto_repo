@@ -549,11 +549,11 @@ message StringRules {
     optional string suffix   = 8;
 
     // Contains specifies that this field must have the specified substring
-    // anywhere in the string.
+    // anapihere in the string.
     optional string contains = 9;
 
     // NotContains specifies that this field cannot have the specified substring
-    // anywhere in the string.
+    // anapihere in the string.
     optional string not_contains = 23;
 
     // In specifies that this field must be equal to one of the specified
@@ -661,7 +661,7 @@ message BytesRules {
     optional bytes  suffix   = 6;
 
     // Contains specifies that this field must have the specified bytes
-    // anywhere in the string.
+    // anapihere in the string.
     optional bytes  contains = 7;
 
     // In specifies that this field must be equal to one of the specified

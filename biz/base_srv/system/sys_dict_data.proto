@@ -9,29 +9,29 @@ option go_package = "proto_repo/pb/base_srv/system/;system";
 service SysDictData {
 	rpc CreateSysDictData (CreateSysDictDataRequest) returns (CreateSysDictDataReply){
 		option (google.api.http) = {
-			post: "yw/system/sys_dict_data"
+			post: "api/system/sys_dict_data"
 			body: "*"
 		};
 	};
 	rpc UpdateSysDictData (UpdateSysDictDataRequest) returns (UpdateSysDictDataReply){
 		option (google.api.http) = {
-			put: "yw/system/sys_dict_data"
+			put: "api/system/sys_dict_data"
 			body: "*"
 		};
 	};
 	rpc DeleteSysDictData (DeleteSysDictDataRequest) returns (DeleteSysDictDataReply){
 		option (google.api.http) = {
-			delete: "yw/system/sys_dict_data/{dictCode}"
+			delete: "api/system/sys_dict_data/{dictCode}"
 		};
 	};
 	rpc GetSysDictData (GetSysDictDataRequest) returns (GetSysDictDataReply){
 		option (google.api.http) = {
-			get: "yw/system/sys_dict_data/{dictCode}"
+			get: "api/system/sys_dict_data/{dictCode}"
 		};
 	};
 	rpc ListSysDictData (ListSysDictDataRequest) returns (ListSysDictDataReply){
 		option (google.api.http) = {
-		get: "yw/system/sys_dict_data"
+		get: "api/system/sys_dict_data"
 		};
 	};
 }

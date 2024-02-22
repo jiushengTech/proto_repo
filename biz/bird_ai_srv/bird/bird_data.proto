@@ -10,7 +10,7 @@ service BirdData {
   // 获取鸟类动态
   rpc ListBirdDynamic (google.protobuf.Empty) returns (ListBirdDynamicReply){
     option (google.api.http) = {
-      get: "yw/bird/listBirdDynamic"
+      get: "api/bird/listBirdDynamic"
     };
   };
 
@@ -18,13 +18,13 @@ service BirdData {
   rpc GetBirdTrack(GetBirdTrackRequest) returns (stream GetBirdTrackReply);
   rpc GetBirdEvolution(GetBirdEvolutionRequest) returns (GetBirdEvolutionReply){
     option (google.api.http) = {
-      get: "yw/bird/getBirdEvolution"
+      get: "api/bird/getBirdEvolution"
     };
   };
   // 获取鸟类分布
   rpc GetBirdDistribution(GetBirdDistributionRequest) returns (GetBirdDistributionReply){
     option (google.api.http) = {
-      get: "yw/bird/getBirdDistribution"
+      get: "api/bird/getBirdDistribution"
     };
   };
 }

@@ -17,7 +17,7 @@ service Radar {
   rpc GetRadarPlot (stream GetRadarPlotRequest) returns (stream GetRadarPlotReply);
   rpc SetRadarModel (GetRadarModelRequest) returns (GetRadarModelReply) {
     option (google.api.http) = {
-      post: "yw/radar/setModel"
+      post: "api/radar/setModel"
       body: "*"
     };
   }

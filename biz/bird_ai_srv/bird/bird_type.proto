@@ -13,7 +13,7 @@ service BirdType {
 	// 创建鸟的生物分类
 	rpc CreateBirdType (CreateBirdTypeRequest) returns (page.Response){
 		option (google.api.http) = {
-			post: "/yw/bird/type/create"
+			post: "/api/bird/type/create"
 			body: "*"
 		};
 	};
@@ -26,7 +26,7 @@ service BirdType {
 	// 获取鸟的生物分类列表
 	rpc ListBirdType (ListBirdTypeRequest) returns (ListBirdTypeReply){
 		option (google.api.http) = {
-			get: "/yw/bird/type/list"
+			get: "/api/bird/type/list"
 		};
 	};
 	rpc GetBirdTypeTree (GetBirdTypeTreeRequest) returns (GetBirdTypeTreeReply);

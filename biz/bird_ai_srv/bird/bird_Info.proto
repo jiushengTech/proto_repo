@@ -16,51 +16,51 @@ service BirdInfo {
 	//查询鸟类信息
 	rpc ListBird (ListBirdRequest) returns (ListBirdReply){
 		option (google.api.http) = {
-			get: "yw/bird/info/listBird"
+			get: "api/bird/info/listBird"
 		};
 	};
 	rpc CreateBird (CreateBirdRequest) returns (CreateBirdReply){
 		option (google.api.http) = {
-			post: "yw/bird/info/createBird"
+			post: "api/bird/info/createBird"
 			body: "*"
 		};
 	};
 	rpc UpdateBird (UpdateBirdRequest) returns (UpdateBirdReply){
 		option (google.api.http) = {
-			put: "yw/bird/info/updateBird"
+			put: "api/bird/info/updateBird"
 			body: "*"
 		};
 	};
 	rpc DeleteBird (DeleteBirdRequest) returns (DeleteBirdReply){
 		option (google.api.http) = {
-			delete: "yw/bird/info/deleteBird"
+			delete: "api/bird/info/deleteBird"
 		};
 	};
 	rpc GetBird (GetBirdRequest) returns (GetBirdReply);
 	rpc GetBirdDetailById (GetBirdDetailByIdRequest) returns (GetBirdDetailByIdReply){
 		option (google.api.http) = {
-			get: "yw/bird/info/getBirdDetail"
+			get: "api/bird/info/getBirdDetail"
 		};
 	};
 	rpc ListBirdOrder (google.protobuf.Empty) returns (ListBirdOrderReply){
 		option (google.api.http) = {
-			get: "yw/bird/info/listBirdOrder"
+			get: "api/bird/info/listBirdOrder"
 		};
 	};
 	rpc ListBirdBaseByOrder (ListBirdBaseByOrderRequest) returns (ListBirdBaseByOrderReply){
 		option (google.api.http) = {
-			get: "yw/bird/info/listBaseByOrder"
+			get: "api/bird/info/listBaseByOrder"
 		};
 	};
 	rpc UploadImage (UploadImageRequest) returns (UploadImageResponse){
 		option (google.api.http) = {
-			post: "yw/bird/info/uploadImage"
+			post: "api/bird/info/uploadImage"
 			body: "*"
 		};
 	};
 	rpc ListBirdTitlePhotoByName (ListBirdTitlePhotoByNameRequest) returns (ListBirdTitlePhotoByNameReply){
 		option (google.api.http) = {
-			get: "yw/bird/info/listBirdTitlePhotoByName"
+			get: "api/bird/info/listBirdTitlePhotoByName"
 		};
 	};
 

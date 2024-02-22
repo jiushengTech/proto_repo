@@ -9,29 +9,29 @@ option go_package = "proto_repo/pb/base_srv/system/;system";
 service SysDictType {
 	rpc CreateSysDictType (CreateSysDictTypeRequest) returns (CreateSysDictTypeReply){
 		option (google.api.http) = {
-			post: "yw/system/sys_dict_type"
+			post: "api/system/sys_dict_type"
 			body: "*"
 		};
 	};
 	rpc UpdateSysDictType (UpdateSysDictTypeRequest) returns (UpdateSysDictTypeReply){
 		option (google.api.http) = {
-			put: "yw/system/sys_dict_type"
+			put: "api/system/sys_dict_type"
 			body: "*"
 		};
 	};
 	rpc DeleteSysDictType (DeleteSysDictTypeRequest) returns (DeleteSysDictTypeReply){
 		option (google.api.http) = {
-			delete: "yw/system/sys_dict_type/{dictId}"
+			delete: "api/system/sys_dict_type/{dictId}"
 		};
 	};
 	rpc GetSysDictType (GetSysDictTypeRequest) returns (GetSysDictTypeReply){
 		option (google.api.http) = {
-			get: "yw/system/sys_dict_type/{dictId}"
+			get: "api/system/sys_dict_type/{dictId}"
 		};
 	};
 	rpc ListSysDictType (ListSysDictTypeRequest) returns (ListSysDictTypeReply){
 		option (google.api.http) = {
-			get: "yw/system/sys_dict_type"
+			get: "api/system/sys_dict_type"
 		};
 	};
 }
