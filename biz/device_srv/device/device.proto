@@ -3,9 +3,9 @@ syntax = "proto3";
 package biz.device_srv.device;
 import "google/api/annotations.proto";
 
-option go_package = "proto_repo/pb/device_srv/device;bird";
+option go_package = "proto_repo/pb/device_srv/device-service;bird";
 option java_multiple_files = true;
-option java_package = "api.device";
+option java_package = "api.device-service";
 
 service Device {
 	rpc CreateDevice (CreateDeviceRequest) returns (CreateDeviceReply);
