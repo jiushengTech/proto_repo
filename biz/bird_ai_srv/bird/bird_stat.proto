@@ -33,6 +33,65 @@ service BirdStat {
 			get: "/api/bird/stat/info"
 		};
 	};
+
+	// 根据时间获取鸟类统计数量
+	rpc ListBirdStatCountByTime (ListBirdStatCountByTimeRequest) returns (ListBirdStatCountByTimeReply){
+		option (google.api.http) = {
+			get: "/api/bird/stat/count"
+		};
+	};
+
+	// 根据目科属种查询鸟类统计数量（去重）
+	rpc ListDistinctBirdStat (ListDistinctBirdStatRequest) returns (ListDistinctBirdStatReply){
+		option (google.api.http) = {
+			get: "/api/bird/stat/count/distinct"
+		};
+	};
+}
+
+message ListDistinctBirdStatRequest{
+	// 开始时间
+	string start_time = 1;
+
+	// 结束时间
+	string end_time = 2;
+
+	// 类型（day：日 month：月 year：年）
+	string time_unit = 3;
+
+
+}
+
+message ListDistinctBirdStatReply{
+	message birdClassStat {
+		uint64 	organism_order_count  = 1;
+		uint64 	organism_family_count = 2;
+		uint64 	organism_genus_count = 3;
+		uint64 	organism_species_count = 4;
+	}
+	// key x轴 value y轴
+	map<string ,birdClassStat> count = 1;
+}
+
+message ListBirdStatCountByTimeRequest{
+	// 开始时间
+	string start_time = 1;
+
+	// 结束时间
+	string end_time = 2;
+
+	// 时间单位（day：日 month：月 year：年）
+	string time_unit = 3;
+
+	// 数据来源类型（默认值为0，0：所有，1：相机 2：声纹）
+	int32 source_type = 4;
+
+}
+
+message ListBirdStatCountByTimeReply{
+	// key x轴 value y轴
+	map<string ,uint64 > count = 1;
+
 }
 
 // 创建鸟的统计信息请求
