@@ -35,7 +35,7 @@ service BirdStat {
 	};
 
 	// 根据时间获取鸟类统计数量
-	rpc ListBirdStatCountByTime (ListBirdStatCountByTimeRequest) returns (ListBirdStatCountByTimeReply){
+	rpc ListBirdStatCount (ListBirdStatCountRequest) returns (ListBirdStatCountReply){
 		option (google.api.http) = {
 			get: "/api/bird/stat/count"
 		};
@@ -73,7 +73,7 @@ message ListDistinctBirdStatReply{
 	map<string ,birdClassStat> count = 1;
 }
 
-message ListBirdStatCountByTimeRequest{
+message ListBirdStatCountRequest{
 	// 开始时间
 	string start_time = 1;
 
@@ -88,7 +88,7 @@ message ListBirdStatCountByTimeRequest{
 
 }
 
-message ListBirdStatCountByTimeReply{
+message ListBirdStatCountReply{
 	// key x轴 value y轴
 	map<string ,uint64 > count = 1;
 
