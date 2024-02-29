@@ -34,20 +34,21 @@ service BirdStat {
 		};
 	};
 
-	// 根据时间获取鸟类统计数量
+	// 根据时间获取鸟类统计数量(默认查所有)
 	rpc ListBirdStatCount (ListBirdStatCountRequest) returns (ListBirdStatCountReply){
 		option (google.api.http) = {
 			get: "/api/bird/stat/count"
 		};
 	};
 
-	// 根据目科属种查询鸟类统计数量（去重）
+	// 根据时间统计鸟类的目科属种(默认查所有)
 	rpc ListBirdStatCountTaxonomy (ListBirdStatCountTaxonomyRequest) returns (ListBirdStatCountTaxonomyReply){
 		option (google.api.http) = {
 			get: "/api/bird/stat/count/taxonomy"
 		};
 	};
 
+	// 根据时间统计鸟类的排行(默认查所有)
 	rpc ListBirdStatCountTop(ListBirdStatCountTopRequest) returns (ListBirdStatCountTopReply){
 		option (google.api.http) = {
 			get: "/api/bird/stat/count/top"
@@ -72,10 +73,15 @@ message ListBirdStatCountOverviewRequest {
 	uint32 source_type = 3;
 }
 message ListBirdStatCountOverviewReply {
+	// 目的数量
 	uint64 	organism_order_count  = 1;
+	// 科的数量
 	uint64 	organism_family_count = 2;
+	// 属于的数量
 	uint64 	organism_genus_count = 3;
+	// 种的数量
 	uint64 	organism_species_count = 4;
+	//总数
 	int64  total_count = 5;
 }
 
