@@ -42,14 +42,73 @@ service BirdStat {
 	};
 
 	// 根据目科属种查询鸟类统计数量（去重）
-	rpc ListDistinctBirdStat (ListDistinctBirdStatRequest) returns (ListDistinctBirdStatReply){
+	rpc ListBirdStatCountTaxonomy (ListBirdStatCountTaxonomyRequest) returns (ListBirdStatCountTaxonomyReply){
 		option (google.api.http) = {
-			get: "/api/bird/stat/count/distinct"
+			get: "/api/bird/stat/count/taxonomy"
 		};
 	};
+
+	rpc ListBirdStatCountTop(ListBirdStatCountTopRequest) returns (ListBirdStatCountTopReply){
+		option (google.api.http) = {
+			get: "/api/bird/stat/count/top"
+		};
+	};
+
+	rpc ListBirdStatCountOverview(ListBirdStatCountOverviewRequest) returns (ListBirdStatCountOverviewReply){
+		option (google.api.http) = {
+			get: "/api/bird/stat/count/overview"
+		};
+	};
+
 }
 
-message ListDistinctBirdStatRequest{
+
+message ListBirdStatCountOverviewRequest {
+
+	// 开始时间
+	string start_time = 1;
+
+	// 结束时间
+	string end_time = 2;
+	// 数据来源类型（默认值为0，0：所有，1：相机 2：声纹）
+	uint32 source_type = 3;
+}
+message ListBirdStatCountOverviewReply {
+	uint64 	organism_order_count  = 1;
+	uint64 	organism_family_count = 2;
+	uint64 	organism_genus_count = 3;
+	uint64 	organism_species_count = 4;
+	int64  total_count = 5;
+}
+
+message ListBirdStatCountTopRequest{
+
+	page.PageQuery page_query = 1;
+
+	// 开始时间
+	string start_time = 2;
+
+	// 结束时间
+	string end_time = 3;
+
+	// 数据来源类型（默认值为0，0：所有，1：相机 2：声纹）
+	uint32 source_type = 4;
+
+}
+
+message ListBirdStatCountTopReply{
+message BirdTop {
+	// 鸟类名称
+	string bird_name = 1;
+
+	// 鸟类数量
+	uint64 count = 2;
+}
+repeated BirdTop list = 1;
+page.PageInfo page_info = 2;
+}
+
+message ListBirdStatCountTaxonomyRequest{
 	// 开始时间
 	string start_time = 1;
 
@@ -59,10 +118,11 @@ message ListDistinctBirdStatRequest{
 	// 类型（day：日 month：月 year：年）
 	string time_unit = 3;
 
-
+	// 数据来源类型（默认值为0，0：所有，1：相机 2：声纹）
+	uint32 source_type = 4;
 }
 
-message ListDistinctBirdStatReply{
+message ListBirdStatCountTaxonomyReply{
 	message birdClassStat {
 		uint64 	organism_order_count  = 1;
 		uint64 	organism_family_count = 2;
@@ -84,7 +144,7 @@ message ListBirdStatCountRequest{
 	string time_unit = 3;
 
 	// 数据来源类型（默认值为0，0：所有，1：相机 2：声纹）
-	int32 source_type = 4;
+	uint32 source_type = 4;
 
 }
 
